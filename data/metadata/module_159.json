@@ -1,0 +1,22 @@
+{
+  "module_name": "module_159.py",
+  "path": "data/modules/module_159.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "find_max",
+      "args": [
+        {
+          "name": "words",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that accepts a list of strings.\nThe list contains different words. Return the word with maximum number\nof unique characters. If multiple strings have maximum number of unique\ncharacters, return the one which comes first in lexicographical order.\n\nfind_max([\"name\", \"of\", \"string\"]) == \"string\"\nfind_max([\"name\", \"enam\", \"game\"]) == \"enam\"\nfind_max([\"aaaaaaa\", \"bb\" ,\"cc\"]) == \"\"aaaaaaa\"",
+      "start_line": 2,
+      "end_line": 12
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "module_name": "module_077.py",
+  "path": "data/modules/module_077.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_simple_power",
+      "args": [
+        {
+          "name": "x",
+          "type": null
+        },
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Your task is to write a function that returns true if a number x is a simple\npower of n and false in other cases.\nx is a simple power of n if n**int=x\nFor example:\nis_simple_power(1, 4) => true\nis_simple_power(2, 2) => true\nis_simple_power(8, 2) => true\nis_simple_power(3, 2) => false\nis_simple_power(3, 1) => false\nis_simple_power(5, 3) => false",
+      "start_line": 2,
+      "end_line": 19
+    }
+  ]
+}

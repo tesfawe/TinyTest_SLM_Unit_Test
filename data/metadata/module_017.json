@@ -1,0 +1,22 @@
+{
+  "module_name": "module_017.py",
+  "path": "data/modules/module_017.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "count_distinct_characters",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        }
+      ],
+      "returns": "int",
+      "docstring": "Given a string, find out how many distinct characters (regardless of case) does it consist of\n>>> count_distinct_characters('xyzXYZ')\n3\n>>> count_distinct_characters('Jerry')\n4",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

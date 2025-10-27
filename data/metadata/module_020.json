@@ -1,0 +1,24 @@
+{
+  "module_name": "module_020.py",
+  "path": "data/modules/module_020.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "sort_numbers",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "str"
+        }
+      ],
+      "returns": "str",
+      "docstring": "Input is a space-delimited string of numberals from 'zero' to 'nine'.\nValid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.\nReturn the string with numbers sorted from smallest to largest\n>>> sort_numbers('three one five')\n'one three five'",
+      "start_line": 4,
+      "end_line": 23
+    }
+  ]
+}

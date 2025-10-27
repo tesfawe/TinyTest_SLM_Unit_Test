@@ -1,0 +1,22 @@
+{
+  "module_name": "module_147.py",
+  "path": "data/modules/module_147.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "specialFilter",
+      "args": [
+        {
+          "name": "nums",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that takes an array of numbers as input and returns \nthe number of elements in the array that are greater than 10 and both \nfirst and last digits of a number are odd (1, 3, 5, 7, 9).\nFor example:\nspecialFilter([15, -73, 14, -15]) => 1 \nspecialFilter([33, -2, -3, 45, 21, 109]) => 2",
+      "start_line": 2,
+      "end_line": 19
+    }
+  ]
+}

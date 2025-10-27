@@ -1,0 +1,25 @@
+{
+  "module_name": "module_009.py",
+  "path": "data/modules/module_009.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List",
+    "typing.Tuple"
+  ],
+  "functions": [
+    {
+      "name": "sum_product",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[int]"
+        }
+      ],
+      "returns": "Tuple[int, int]",
+      "docstring": "For a given list of integers, return a tuple consisting of a sum and a product of all the integers in a list.\nEmpty sum should be equal to 0 and empty product should be equal to 1.\n>>> sum_product([])\n(0, 1)\n>>> sum_product([1, 2, 3, 4])\n(10, 24)",
+      "start_line": 4,
+      "end_line": 18
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "module_name": "module_066.py",
+  "path": "data/modules/module_066.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "circular_shift",
+      "args": [
+        {
+          "name": "x",
+          "type": null
+        },
+        {
+          "name": "shift",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Circular shift the digits of the integer x, shift the digits right by shift\nand return the result as a string.\nIf shift > number of digits, return digits reversed.\n>>> circular_shift(12, 1)\n\"21\"\n>>> circular_shift(12, 2)\n\"12\"",
+      "start_line": 2,
+      "end_line": 15
+    }
+  ]
+}

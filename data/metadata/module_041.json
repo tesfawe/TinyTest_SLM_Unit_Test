@@ -1,0 +1,22 @@
+{
+  "module_name": "module_041.py",
+  "path": "data/modules/module_041.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "triples_sum_to_zero",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "triples_sum_to_zero takes a list of integers as an input.\nit returns True if there are three distinct elements in the list that\nsum to zero, and False otherwise.\n\n>>> triples_sum_to_zero([1, 3, 5, 0])\nFalse\n>>> triples_sum_to_zero([1, 3, -2, 1])\nTrue\n>>> triples_sum_to_zero([1, 2, 3, 7])\nFalse\n>>> triples_sum_to_zero([2, 4, -5, 3, 9, 7])\nTrue\n>>> triples_sum_to_zero([1])\nFalse",
+      "start_line": 3,
+      "end_line": 25
+    }
+  ]
+}

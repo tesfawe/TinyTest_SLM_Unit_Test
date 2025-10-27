@@ -1,0 +1,28 @@
+{
+  "module_name": "module_006.py",
+  "path": "data/modules/module_006.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "intersperse",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[int]"
+        },
+        {
+          "name": "delimeter",
+          "type": "int"
+        }
+      ],
+      "returns": "List[int]",
+      "docstring": "Insert a number 'delimeter' between every two consecutive elements of input list `numbers'\n>>> intersperse([], 4)\n[]\n>>> intersperse([1, 2, 3], 4)\n[1, 4, 2, 4, 3]",
+      "start_line": 4,
+      "end_line": 22
+    }
+  ]
+}

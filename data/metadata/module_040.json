@@ -1,0 +1,37 @@
+{
+  "module_name": "module_040.py",
+  "path": "data/modules/module_040.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [
+    "math"
+  ],
+  "functions": [
+    {
+      "name": "prime_fib",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "prime_fib returns n-th number that is a Fibonacci number and it's also prime.\n>>> prime_fib(1)\n2\n>>> prime_fib(2)\n3\n>>> prime_fib(3)\n5\n>>> prime_fib(4)\n13\n>>> prime_fib(5)\n89",
+      "start_line": 3,
+      "end_line": 32
+    },
+    {
+      "name": "is_prime",
+      "args": [
+        {
+          "name": "p",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 19,
+      "end_line": 25
+    }
+  ]
+}

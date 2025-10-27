@@ -1,0 +1,35 @@
+{
+  "module_name": "module_076.py",
+  "path": "data/modules/module_076.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_multiply_prime",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that returns true if the given number is the multiplication of 3 prime numbers\nand false otherwise.\nKnowing that (a) is less then 100. \nExample:\nis_multiply_prime(30) == True\n30 = 2 * 3 * 5",
+      "start_line": 2,
+      "end_line": 23
+    },
+    {
+      "name": "is_prime",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ]
+}

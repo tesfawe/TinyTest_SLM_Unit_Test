@@ -1,0 +1,22 @@
+{
+  "module_name": "module_074.py",
+  "path": "data/modules/module_074.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "smallest_change",
+      "args": [
+        {
+          "name": "arr",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given an array arr of integers, find the minimum number of elements that\nneed to be changed to make the array palindromic. A palindromic array is an array that\nis read the same backwards and forwards. In one change, you can change one element to any other element.\n\nFor example:\nsmallest_change([1,2,3,5,4,7,9,6]) == 4\nsmallest_change([1, 2, 3, 4, 3, 2, 2]) == 1\nsmallest_change([1, 2, 3, 2, 1]) == 0",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

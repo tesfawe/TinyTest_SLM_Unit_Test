@@ -1,0 +1,26 @@
+{
+  "module_name": "module_153.py",
+  "path": "data/modules/module_153.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "compare",
+      "args": [
+        {
+          "name": "game",
+          "type": null
+        },
+        {
+          "name": "guess",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "I think we all remember that feeling when the result of some long-awaited\nevent is finally known. The feelings and thoughts you have at that moment are\ndefinitely worth noting down and comparing.\nYour task is to determine if a person correctly guessed the results of a number of matches.\nYou are given two arrays of scores and guesses of equal length, where each index shows a match. \nReturn an array of the same length denoting how far off each guess was. If they have guessed correctly,\nthe value is 0, and if not, the value is the absolute difference between the guess and the score.\n\n\nexample:\n\ncompare([1,2,3,4,5,1],[1,2,3,4,2,-2]) -> [0,0,0,0,3,3]\ncompare([0,5,0,0,0,4],[4,1,1,0,0,-2]) -> [4,4,1,0,0,6]",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

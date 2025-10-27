@@ -1,0 +1,22 @@
+{
+  "module_name": "module_052.py",
+  "path": "data/modules/module_052.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "remove_vowels",
+      "args": [
+        {
+          "name": "text",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "remove_vowels is a function that takes string and returns string without vowels.\n    >>> remove_vowels('')\n    ''\n    >>> remove_vowels(\"abcdef\nghijklm\")\n    'bcdf\nghjklm'\n    >>> remove_vowels('abcdef')\n    'bcdf'\n    >>> remove_vowels('aaaaa')\n    ''\n    >>> remove_vowels('aaBAA')\n    'B'\n    >>> remove_vowels('zbcd')\n    'zbcd'",
+      "start_line": 3,
+      "end_line": 19
+    }
+  ]
+}

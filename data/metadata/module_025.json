@@ -1,0 +1,22 @@
+{
+  "module_name": "module_025.py",
+  "path": "data/modules/module_025.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "largest_divisor",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": "int",
+      "docstring": "For a given number n, find the largest number that divides n evenly, smaller than n\n>>> largest_divisor(15)\n5",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

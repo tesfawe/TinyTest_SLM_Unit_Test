@@ -1,0 +1,22 @@
+{
+  "module_name": "module_144.py",
+  "path": "data/modules/module_144.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "words_in_sentence",
+      "args": [
+        {
+          "name": "sentence",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given a string representing a sentence,\nthe sentence contains some words separated by a space,\nand you have to return a string that contains the words from the original sentence,\nwhose lengths are prime numbers,\nthe order of the words in the new string should be the same as the original one.\n\nExample 1:\n    Input: sentence = \"This is a test\"\n    Output: \"is\"\n\nExample 2:\n    Input: sentence = \"lets go for swimming\"\n    Output: \"go for\"\n\nConstraints:\n    * 1 <= len(sentence) <= 100\n    * sentence contains only letters",
+      "start_line": 2,
+      "end_line": 32
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "module_name": "module_092.py",
+  "path": "data/modules/module_092.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "re"
+  ],
+  "functions": [
+    {
+      "name": "is_bored",
+      "args": [
+        {
+          "name": "S",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You'll be given a string of words, and your task is to count the number\nof boredoms. A boredom is a sentence that starts with the word \"I\".\nSentences are delimited by '.', '?' or '!'.\n\nFor example:\n>>> is_bored(\"Hello world\")\n0\n>>> is_bored(\"The sky is blue. The sun is shining. I love this weather\")\n1",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

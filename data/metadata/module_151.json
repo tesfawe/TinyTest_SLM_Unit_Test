@@ -1,0 +1,30 @@
+{
+  "module_name": "module_151.py",
+  "path": "data/modules/module_151.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "x_or_y",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        },
+        {
+          "name": "x",
+          "type": null
+        },
+        {
+          "name": "y",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "A simple program which should return the value of x if n is \na prime number and should return the value of y otherwise.\n\nExamples:\nfor x_or_y(7, 34, 12) == 34\nfor x_or_y(15, 8, 5) == 5",
+      "start_line": 2,
+      "end_line": 18
+    }
+  ]
+}

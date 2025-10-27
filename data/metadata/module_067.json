@@ -1,0 +1,22 @@
+{
+  "module_name": "module_067.py",
+  "path": "data/modules/module_067.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "digitSum",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Task\nWrite a function that takes a string as input and returns the sum of the upper characters only'\nASCII codes.\n\nExamples:\n    digitSum(\"\") => 0\n    digitSum(\"abAB\") => 131\n    digitSum(\"abcCd\") => 67\n    digitSum(\"helloE\") => 69\n    digitSum(\"woArBld\") => 131\n    digitSum(\"aAaaaXa\") => 153",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

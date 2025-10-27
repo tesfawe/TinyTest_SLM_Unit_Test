@@ -1,0 +1,22 @@
+{
+  "module_name": "module_080.py",
+  "path": "data/modules/module_080.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "decimal_to_binary",
+      "args": [
+        {
+          "name": "decimal",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You will be given a number in decimal form and your task is to convert it to\nbinary format. The function should return a string, with each character representing a binary\nnumber. Each character in the string will be '0' or '1'.\n\nThere will be an extra couple of characters 'db' at the beginning and at the end of the string.\nThe extra characters are there to help with the format.\n\nExamples:\ndecimal_to_binary(15)   # returns \"db1111db\"\ndecimal_to_binary(32)   # returns \"db100000db\"",
+      "start_line": 2,
+      "end_line": 14
+    }
+  ]
+}

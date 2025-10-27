@@ -1,0 +1,25 @@
+{
+  "module_name": "module_021.py",
+  "path": "data/modules/module_021.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List",
+    "typing.Tuple"
+  ],
+  "functions": [
+    {
+      "name": "find_closest_elements",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[float]"
+        }
+      ],
+      "returns": "Tuple[float, float]",
+      "docstring": "From a supplied list of numbers (of length at least two) select and return two that are the closest to each\nother and return them in order (smaller number, larger number).\n>>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.2])\n(2.0, 2.2)\n>>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])\n(2.0, 2.0)",
+      "start_line": 4,
+      "end_line": 27
+    }
+  ]
+}

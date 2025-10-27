@@ -1,0 +1,26 @@
+{
+  "module_name": "module_113.py",
+  "path": "data/modules/module_113.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "reverse_delete",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        },
+        {
+          "name": "c",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Task\nWe are given two strings s and c, you have to deleted all the characters in s that are equal to any character in c\nthen check if the result string is palindrome.\nA string is called palindrome if it reads the same backward as forward.\nYou should return a tuple containing the result string and True/False for the check.\nExample\nFor s = \"abcde\", c = \"ae\", the result should be ('bcd',False)\nFor s = \"abcdef\", c = \"b\"  the result should be ('acdef',False)\nFor s = \"abcdedcba\", c = \"ab\", the result should be ('cdedc',True)",
+      "start_line": 2,
+      "end_line": 14
+    }
+  ]
+}

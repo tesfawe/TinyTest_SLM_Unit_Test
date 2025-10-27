@@ -1,0 +1,22 @@
+{
+  "module_name": "module_162.py",
+  "path": "data/modules/module_162.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "solve",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given a string s.\nif s[i] is a letter, reverse its case from lower to upper or vise versa, \notherwise keep it as it is.\nIf the string contains no letters, reverse the string.\nThe function should return the resulted string.\nExamples\nsolve(\"1234\") = \"4321\"\nsolve(\"ab\") = \"AB\"\nsolve(\"#a@C\") = \"#A@c\"",
+      "start_line": 2,
+      "end_line": 26
+    }
+  ]
+}

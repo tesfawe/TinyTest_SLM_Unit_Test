@@ -1,0 +1,22 @@
+{
+  "module_name": "module_065.py",
+  "path": "data/modules/module_065.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "vowels_count",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function vowels_count which takes a string representing\na word as input and returns the number of vowels in the string.\nVowels in this case are 'a', 'e', 'i', 'o', 'u'. Here, 'y' is also a\nvowel, but only when it is at the end of the given word.\n\nExample:\n>>> vowels_count(\"abcde\")\n2\n>>> vowels_count(\"ACEDY\")\n3",
+      "start_line": 6,
+      "end_line": 22
+    }
+  ]
+}

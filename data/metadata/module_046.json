@@ -1,0 +1,26 @@
+{
+  "module_name": "module_046.py",
+  "path": "data/modules/module_046.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "triangle_area",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        },
+        {
+          "name": "h",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given length of a side and high return area for a triangle.\n>>> triangle_area(5, 3)\n7.5",
+      "start_line": 3,
+      "end_line": 8
+    }
+  ]
+}

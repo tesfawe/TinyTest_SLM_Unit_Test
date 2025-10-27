@@ -1,0 +1,35 @@
+{
+  "module_name": "module_039.py",
+  "path": "data/modules/module_039.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "encode_cyclic",
+      "args": [
+        {
+          "name": "s",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "returns encoded string by cycling groups of three characters.",
+      "start_line": 3,
+      "end_line": 11
+    },
+    {
+      "name": "decode_cyclic",
+      "args": [
+        {
+          "name": "s",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "takes as input string encoded with encode_cyclic function. Returns decoded string.",
+      "start_line": 14,
+      "end_line": 18
+    }
+  ]
+}

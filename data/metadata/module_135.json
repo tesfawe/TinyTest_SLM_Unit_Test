@@ -1,0 +1,22 @@
+{
+  "module_name": "module_135.py",
+  "path": "data/modules/module_135.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "check_if_last_char_is_a_letter",
+      "args": [
+        {
+          "name": "txt",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function that returns True if the last character\nof a given string is an alphabetical character and is not\na part of a word, and False otherwise.\nNote: \"word\" is a group of characters separated by space.\n\nExamples:\ncheck_if_last_char_is_a_letter(\"apple pie\") \u279e False\ncheck_if_last_char_is_a_letter(\"apple pi e\") \u279e True\ncheck_if_last_char_is_a_letter(\"apple pi e \") \u279e False\ncheck_if_last_char_is_a_letter(\"\") \u279e False",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

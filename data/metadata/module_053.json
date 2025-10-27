@@ -1,0 +1,26 @@
+{
+  "module_name": "module_053.py",
+  "path": "data/modules/module_053.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "below_threshold",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        },
+        {
+          "name": "t",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return True if all numbers in the list l are below threshold t.\n>>> below_threshold([1, 2, 4, 10], 100)\nTrue\n>>> below_threshold([1, 20, 4, 10], 5)\nFalse",
+      "start_line": 3,
+      "end_line": 13
+    }
+  ]
+}

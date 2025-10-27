@@ -1,0 +1,22 @@
+{
+  "module_name": "module_031.py",
+  "path": "data/modules/module_031.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "get_positive",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return only positive numbers in the list.\n>>> get_positive([-1, 2, -4, 5, 6])\n[2, 5, 6]\n>>> get_positive([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n[5, 3, 2, 3, 9, 123, 1]",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

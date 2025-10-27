@@ -1,0 +1,22 @@
+{
+  "module_name": "module_115.py",
+  "path": "data/modules/module_115.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "minSubArraySum",
+      "args": [
+        {
+          "name": "nums",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given an array of integers nums, find the minimum sum of any non-empty sub-array\nof nums.\nExample\nminSubArraySum([2, 3, 4, 1, 2, 4]) == 1\nminSubArraySum([-1, -2, -3]) == -6",
+      "start_line": 2,
+      "end_line": 20
+    }
+  ]
+}

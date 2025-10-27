@@ -1,0 +1,22 @@
+{
+  "module_name": "module_085.py",
+  "path": "data/modules/module_085.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "solve",
+      "args": [
+        {
+          "name": "N",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a positive integer N, return the total sum of its digits in binary.\n\nExample\n    For N = 1000, the sum of digits will be 1 the output should be \"1\".\n    For N = 150, the sum of digits will be 6 the output should be \"110\".\n    For N = 147, the sum of digits will be 12 the output should be \"1100\".\n\nVariables:\n    @N integer\n         Constraints: 0 \u2264 N \u2264 10000.\nOutput:\n     a string of binary number",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

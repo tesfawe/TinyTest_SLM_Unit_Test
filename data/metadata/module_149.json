@@ -1,0 +1,26 @@
+{
+  "module_name": "module_149.py",
+  "path": "data/modules/module_149.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "bf",
+      "args": [
+        {
+          "name": "planet1",
+          "type": null
+        },
+        {
+          "name": "planet2",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "There are eight planets in our solar system: the closerst to the Sun \nis Mercury, the next one is Venus, then Earth, Mars, Jupiter, Saturn, \nUranus, Neptune.\nWrite a function that takes two planet names as strings planet1 and planet2. \nThe function should return a tuple containing all planets whose orbits are \nlocated between the orbit of planet1 and the orbit of planet2, sorted by \nthe proximity to the sun. \nThe function should return an empty tuple if planet1 or planet2\nare not correct planet names. \nExamples\nbf(\"Jupiter\", \"Neptune\") ==> (\"Saturn\", \"Uranus\")\nbf(\"Earth\", \"Mercury\") ==> (\"Venus\")\nbf(\"Mercury\", \"Uranus\") ==> (\"Venus\", \"Earth\", \"Mars\", \"Jupiter\", \"Saturn\")",
+      "start_line": 2,
+      "end_line": 26
+    }
+  ]
+}

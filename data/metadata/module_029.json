@@ -1,0 +1,24 @@
+{
+  "module_name": "module_029.py",
+  "path": "data/modules/module_029.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "concatenate",
+      "args": [
+        {
+          "name": "strings",
+          "type": "List[str]"
+        }
+      ],
+      "returns": "str",
+      "docstring": "Concatenate list of strings into a single string\n>>> concatenate([])\n''\n>>> concatenate(['a', 'b', 'c'])\n'abc'",
+      "start_line": 4,
+      "end_line": 11
+    }
+  ]
+}

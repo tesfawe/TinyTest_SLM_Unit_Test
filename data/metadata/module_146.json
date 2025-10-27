@@ -1,0 +1,35 @@
+{
+  "module_name": "module_146.py",
+  "path": "data/modules/module_146.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "order_by_points",
+      "args": [
+        {
+          "name": "nums",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function which sorts the given list of integers\nin ascending order according to the sum of their digits.\nNote: if there are several items with similar sum of their digits,\norder them based on their index in original list.\n\nFor example:\n>>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]\n>>> order_by_points([]) == []",
+      "start_line": 2,
+      "end_line": 19
+    },
+    {
+      "name": "digits_sum",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 13,
+      "end_line": 18
+    }
+  ]
+}

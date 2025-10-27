@@ -1,0 +1,24 @@
+{
+  "module_name": "module_015.py",
+  "path": "data/modules/module_015.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "all_prefixes",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        }
+      ],
+      "returns": "List[str]",
+      "docstring": "Return list of all prefixes from shortest to longest of the input string\n>>> all_prefixes('abc')\n['a', 'ab', 'abc']",
+      "start_line": 4,
+      "end_line": 13
+    }
+  ]
+}

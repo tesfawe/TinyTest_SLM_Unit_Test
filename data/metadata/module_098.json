@@ -1,0 +1,26 @@
+{
+  "module_name": "module_098.py",
+  "path": "data/modules/module_098.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "multiply",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        },
+        {
+          "name": "b",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Complete the function that takes two integers and returns \nthe product of their unit digits.\nAssume the input is always valid.\nExamples:\nmultiply(148, 412) should return 16.\nmultiply(19, 28) should return 72.\nmultiply(2020, 1851) should return 0.\nmultiply(14,-15) should return 20.",
+      "start_line": 2,
+      "end_line": 12
+    }
+  ]
+}

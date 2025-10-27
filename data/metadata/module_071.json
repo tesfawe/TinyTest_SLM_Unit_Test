@@ -1,0 +1,22 @@
+{
+  "module_name": "module_071.py",
+  "path": "data/modules/module_071.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "strange_sort_list",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given list of integers, return list in strange order.\nStrange sorting, is when you start with the minimum value,\nthen maximum of the remaining integers, then minimum and so on.\n\nExamples:\nstrange_sort_list([1, 2, 3, 4]) == [1, 4, 2, 3]\nstrange_sort_list([5, 5, 5, 5]) == [5, 5, 5, 5]\nstrange_sort_list([]) == []",
+      "start_line": 2,
+      "end_line": 18
+    }
+  ]
+}

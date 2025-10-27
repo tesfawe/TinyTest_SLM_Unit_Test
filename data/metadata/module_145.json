@@ -1,0 +1,26 @@
+{
+  "module_name": "module_145.py",
+  "path": "data/modules/module_145.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "simplify",
+      "args": [
+        {
+          "name": "x",
+          "type": null
+        },
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Your task is to implement a function that will simplify the expression\nx * n. The function returns True if x * n evaluates to a whole number and False\notherwise. Both x and n, are string representation of a fraction, and have the following format,\n<numerator>/<denominator> where both numerator and denominator are positive whole numbers.\n\nYou can assume that x, and n are valid fractions, and do not have zero as denominator.\n\nsimplify(\"1/5\", \"5/1\") = True\nsimplify(\"1/6\", \"2/1\") = False\nsimplify(\"7/10\", \"10/2\") = False",
+      "start_line": 2,
+      "end_line": 20
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "module_name": "module_111.py",
+  "path": "data/modules/module_111.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "exchange",
+      "args": [
+        {
+          "name": "lst1",
+          "type": null
+        },
+        {
+          "name": "lst2",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "In this problem, you will implement a function that takes two lists of numbers,\nand determines whether it is possible to perform an exchange of elements\nbetween them to make lst1 a list of only even numbers.\nThere is no limit on the number of exchanged elements between lst1 and lst2.\nIf it is possible to exchange elements between the lst1 and lst2 to make\nall the elements of lst1 to be even, return \"YES\".\nOtherwise, return \"NO\".\nFor example:\nexchange([1, 2, 3, 4], [1, 2, 3, 4]) => \"YES\"\nexchange([1, 2, 3, 4], [1, 5, 3, 4]) => \"NO\"\nIt is assumed that the input lists will be non-empty.",
+      "start_line": 2,
+      "end_line": 25
+    }
+  ]
+}

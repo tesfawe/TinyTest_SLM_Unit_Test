@@ -1,0 +1,26 @@
+{
+  "module_name": "module_019.py",
+  "path": "data/modules/module_019.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "how_many_times",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        },
+        {
+          "name": "substring",
+          "type": "str"
+        }
+      ],
+      "returns": "int",
+      "docstring": "Find how many times a given substring can be found in the original string. Count overlaping cases.\n>>> how_many_times('', 'a')\n0\n>>> how_many_times('aaa', 'a')\n3\n>>> how_many_times('aaaa', 'aa')\n3",
+      "start_line": 3,
+      "end_line": 18
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "module_name": "module_013.py",
+  "path": "data/modules/module_013.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List",
+    "typing.Optional"
+  ],
+  "functions": [
+    {
+      "name": "longest",
+      "args": [
+        {
+          "name": "strings",
+          "type": "List[str]"
+        }
+      ],
+      "returns": "Optional[str]",
+      "docstring": "Out of list of strings, return the longest one. Return the first one in case of multiple\nstrings of the same length. Return None in case the input list is empty.\n>>> longest([])\n\n>>> longest(['a', 'b', 'c'])\n'a'\n>>> longest(['a', 'bb', 'ccc'])\n'ccc'",
+      "start_line": 4,
+      "end_line": 20
+    }
+  ]
+}

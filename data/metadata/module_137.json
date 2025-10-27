@@ -1,0 +1,22 @@
+{
+  "module_name": "module_137.py",
+  "path": "data/modules/module_137.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "largest_smallest_integers",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function that returns a tuple (a, b), where 'a' is\nthe largest of negative integers, and 'b' is the smallest\nof positive integers in a list.\nIf there is no negative or positive integers, return them as None.\n\nExamples:\nlargest_smallest_integers([2, 4, 1, 3, 5, 7]) == (None, 1)\nlargest_smallest_integers([]) == (None, None)\nlargest_smallest_integers([0]) == (None, None)",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

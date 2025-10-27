@@ -1,0 +1,22 @@
+{
+  "module_name": "module_024.py",
+  "path": "data/modules/module_024.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "strlen",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        }
+      ],
+      "returns": "int",
+      "docstring": "Return length of given string\n>>> strlen('')\n0\n>>> strlen('abc')\n3",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

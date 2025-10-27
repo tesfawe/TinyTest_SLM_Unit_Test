@@ -1,0 +1,25 @@
+{
+  "module_name": "module_100.py",
+  "path": "data/modules/module_100.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "math.floor",
+    "math.ceil"
+  ],
+  "functions": [
+    {
+      "name": "closest_integer",
+      "args": [
+        {
+          "name": "value",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function that takes a value (string) representing a number\nand returns the closest integer to it. If the number is equidistant\nfrom two integers, round it away from zero.\n\nExamples\n>>> closest_integer(\"10\")\n10\n>>> closest_integer(\"15.3\")\n15\n\nNote:\nRounding away from zero means that if the given number is equidistant\nfrom two integers, the one you should return is the one that is the\nfarthest from zero. For example closest_integer(\"14.5\") should\nreturn 15 and closest_integer(\"-14.5\") should return -15.",
+      "start_line": 2,
+      "end_line": 38
+    }
+  ]
+}

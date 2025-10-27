@@ -1,0 +1,22 @@
+{
+  "module_name": "module_083.py",
+  "path": "data/modules/module_083.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "prime_length",
+      "args": [
+        {
+          "name": "string",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that takes a string and returns True if the string\nlength is a prime number or False otherwise\nExamples\nprime_length('Hello') == True\nprime_length('abcdcba') == True\nprime_length('kittens') == True\nprime_length('orange') == False",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

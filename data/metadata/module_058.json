@@ -1,0 +1,22 @@
+{
+  "module_name": "module_058.py",
+  "path": "data/modules/module_058.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "monotonic",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return True is list elements are monotonically increasing or decreasing.\n>>> monotonic([1, 2, 4, 20])\nTrue\n>>> monotonic([1, 20, 4, 10])\nFalse\n>>> monotonic([4, 1, 0, -10])\nTrue",
+      "start_line": 3,
+      "end_line": 14
+    }
+  ]
+}

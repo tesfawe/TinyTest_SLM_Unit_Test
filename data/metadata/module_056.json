@@ -1,0 +1,22 @@
+{
+  "module_name": "module_056.py",
+  "path": "data/modules/module_056.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "fib",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return n-th Fibonacci number.\n>>> fib(10)\n55\n>>> fib(1)\n1\n>>> fib(8)\n21",
+      "start_line": 3,
+      "end_line": 16
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "module_142.py",
+  "path": "data/modules/module_142.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "file_name_check",
+      "args": [
+        {
+          "name": "file_name",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function which takes a string representing a file's name, and returns\n'Yes' if the the file's name is valid, and returns 'No' otherwise.\nA file's name is considered to be valid if and only if all the following conditions \nare met:\n- There should not be more than three digits ('0'-'9') in the file's name.\n- The file's name contains exactly one dot '.'\n- The substring before the dot should not be empty, and it starts with a letter from \nthe latin alphapet ('a'-'z' and 'A'-'Z').\n- The substring after the dot should be one of these: ['txt', 'exe', 'dll']\nExamples:\nfile_name_check(\"example.txt\") # => 'Yes'\nfile_name_check(\"1example.dll\") # => 'No' (the name should start with a latin alphapet letter)",
+      "start_line": 2,
+      "end_line": 29
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "module_057.py",
+  "path": "data/modules/module_057.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "correct_bracketing",
+      "args": [
+        {
+          "name": "brackets",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "brackets is a string of \"<\" and \">\".\nreturn True if every opening bracket has a corresponding closing bracket.\n\n>>> correct_bracketing(\"<\")\nFalse\n>>> correct_bracketing(\"<>\")\nTrue\n>>> correct_bracketing(\"<<><>>\")\nTrue\n>>> correct_bracketing(\"><<>\")\nFalse",
+      "start_line": 3,
+      "end_line": 24
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "module_016.py",
+  "path": "data/modules/module_016.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "string_sequence",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": "str",
+      "docstring": "Return a string containing space-delimited numbers starting from 0 upto n inclusive.\n>>> string_sequence(0)\n'0'\n>>> string_sequence(5)\n'0 1 2 3 4 5'",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

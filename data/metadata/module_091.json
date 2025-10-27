@@ -1,0 +1,22 @@
+{
+  "module_name": "module_091.py",
+  "path": "data/modules/module_091.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "next_smallest",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given a list of integers.\nWrite a function next_smallest() that returns the 2nd smallest element of the list.\nReturn None if there is no such element.\n\nnext_smallest([1, 2, 3, 4, 5]) == 2\nnext_smallest([5, 1, 4, 3, 2]) == 2\nnext_smallest([]) == None\nnext_smallest([1, 1]) == None",
+      "start_line": 2,
+      "end_line": 14
+    }
+  ]
+}

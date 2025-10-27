@@ -1,0 +1,22 @@
+{
+  "module_name": "module_139.py",
+  "path": "data/modules/module_139.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_equal_to_sum_even",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Evaluate whether the given number n can be written as the sum of exactly 4 positive even numbers\nExample\nis_equal_to_sum_even(4) == False\nis_equal_to_sum_even(6) == False\nis_equal_to_sum_even(8) == True",
+      "start_line": 2,
+      "end_line": 9
+    }
+  ]
+}

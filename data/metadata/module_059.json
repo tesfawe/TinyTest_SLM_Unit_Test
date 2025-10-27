@@ -1,0 +1,26 @@
+{
+  "module_name": "module_059.py",
+  "path": "data/modules/module_059.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "common",
+      "args": [
+        {
+          "name": "l1",
+          "type": "list"
+        },
+        {
+          "name": "l2",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return sorted unique common elements for two lists.\n>>> common([1, 4, 3, 34, 653, 2, 5], [5, 7, 1, 5, 9, 653, 121])\n[1, 5, 653]\n>>> common([5, 3, 2, 8], [3, 2])\n[2, 3]",
+      "start_line": 3,
+      "end_line": 16
+    }
+  ]
+}

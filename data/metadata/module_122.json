@@ -1,0 +1,22 @@
+{
+  "module_name": "module_122.py",
+  "path": "data/modules/module_122.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "solution",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a non-empty list of integers, return the sum of all of the odd elements that are in even positions.\n\n\nExamples\nsolution([5, 8, 7, 1]) ==> 12\nsolution([3, 3, 3, 3, 3]) ==> 9\nsolution([30, 13, 24, 321]) ==>0",
+      "start_line": 2,
+      "end_line": 11
+    }
+  ]
+}

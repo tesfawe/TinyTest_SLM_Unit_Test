@@ -1,0 +1,30 @@
+{
+  "module_name": "module_158.py",
+  "path": "data/modules/module_158.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "right_angle_triangle",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        },
+        {
+          "name": "b",
+          "type": null
+        },
+        {
+          "name": "c",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given the lengths of the three sides of a triangle. Return True if the three\nsides form a right-angled triangle, False otherwise.\nA right-angled triangle is a triangle in which one angle is right angle or \n90 degree.\nExample:\nright_angle_triangle(3, 4, 5) == True\nright_angle_triangle(1, 2, 3) == False",
+      "start_line": 2,
+      "end_line": 12
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "module_name": "module_164.py",
+  "path": "data/modules/module_164.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "generate_integers",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        },
+        {
+          "name": "b",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given two positive integers a and b, return the even digits between a\nand b, in ascending order.\n\nFor example:\ngenerate_integers(2, 8) => [2, 4, 6, 8]\ngenerate_integers(8, 2) => [2, 4, 6, 8]\ngenerate_integers(10, 14) => []",
+      "start_line": 2,
+      "end_line": 15
+    }
+  ]
+}

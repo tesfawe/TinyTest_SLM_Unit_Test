@@ -1,0 +1,22 @@
+{
+  "module_name": "module_049.py",
+  "path": "data/modules/module_049.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_palindrome",
+      "args": [
+        {
+          "name": "text",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "Checks if given string is a palindrome\n>>> is_palindrome('')\nTrue\n>>> is_palindrome('aba')\nTrue\n>>> is_palindrome('aaaaa')\nTrue\n>>> is_palindrome('zbcd')\nFalse",
+      "start_line": 3,
+      "end_line": 18
+    }
+  ]
+}

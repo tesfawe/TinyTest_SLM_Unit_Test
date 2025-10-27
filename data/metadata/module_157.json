@@ -1,0 +1,22 @@
+{
+  "module_name": "module_157.py",
+  "path": "data/modules/module_157.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "int_to_mini_roman",
+      "args": [
+        {
+          "name": "number",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a positive integer, obtain its roman numeral equivalent as a string,\nand return it in lowercase.\nRestrictions: 1 <= num <= 1000\n\nExamples:\n>>> int_to_mini_roman(19) == 'xix'\n>>> int_to_mini_roman(152) == 'clii'\n>>> int_to_mini_roman(426) == 'cdxxvi'",
+      "start_line": 2,
+      "end_line": 26
+    }
+  ]
+}

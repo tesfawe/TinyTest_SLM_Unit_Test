@@ -1,0 +1,26 @@
+{
+  "module_name": "module_045.py",
+  "path": "data/modules/module_045.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "change_base",
+      "args": [
+        {
+          "name": "x",
+          "type": "int"
+        },
+        {
+          "name": "base",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "Change numerical base of input number x to base.\nreturn string representation after the conversion.\nbase numbers are less than 10.\n>>> change_base(8, 3)\n'22'\n>>> change_base(8, 2)\n'1000'\n>>> change_base(7, 2)\n'111'",
+      "start_line": 3,
+      "end_line": 18
+    }
+  ]
+}

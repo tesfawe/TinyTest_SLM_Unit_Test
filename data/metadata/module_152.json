@@ -1,0 +1,22 @@
+{
+  "module_name": "module_152.py",
+  "path": "data/modules/module_152.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "double_the_difference",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a list of numbers, return the sum of squares of the numbers\nin the list that are odd. Ignore numbers that are negative or not integers.\n\ndouble_the_difference([1, 3, 2, 0]) == 1 + 9 + 0 + 0 = 10\ndouble_the_difference([-1, -2, 0]) == 0\ndouble_the_difference([9, -2]) == 81\ndouble_the_difference([0]) == 0  \n\nIf the input list is empty, return 0.",
+      "start_line": 2,
+      "end_line": 14
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "module_078.py",
+  "path": "data/modules/module_078.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "iscube",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that takes an integer a and returns True \nif this ingeger is a cube of some integer number.\nNote: you may assume the input is always valid.\nExamples:\niscube(1) ==> True\niscube(2) ==> False\niscube(-1) ==> True\niscube(64) ==> True\niscube(0) ==> True\niscube(180) ==> False",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

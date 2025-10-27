@@ -1,0 +1,26 @@
+{
+  "module_name": "module_104.py",
+  "path": "data/modules/module_104.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "rounded_avg",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        },
+        {
+          "name": "m",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given two positive integers n and m, and your task is to compute the\naverage of the integers from n through m (including n and m). \nRound the answer to the nearest integer and convert that to binary.\nIf n is greater than m, return -1.\nExample:\nrounded_avg(1, 5) => \"0b11\"\nrounded_avg(7, 5) => -1\nrounded_avg(10, 20) => \"0b1111\"\nrounded_avg(20, 33) => \"0b11010\"",
+      "start_line": 2,
+      "end_line": 18
+    }
+  ]
+}

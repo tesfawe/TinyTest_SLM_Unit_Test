@@ -1,0 +1,22 @@
+{
+  "module_name": "module_043.py",
+  "path": "data/modules/module_043.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "incr_list",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return list with elements incremented by 1.\n>>> incr_list([1, 2, 3])\n[2, 3, 4]\n>>> incr_list([5, 3, 5, 2, 3, 3, 9, 0, 123])\n[6, 4, 6, 3, 4, 4, 10, 1, 124]",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

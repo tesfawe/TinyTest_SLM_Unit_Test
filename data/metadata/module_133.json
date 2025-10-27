@@ -1,0 +1,22 @@
+{
+  "module_name": "module_133.py",
+  "path": "data/modules/module_133.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_nested",
+      "args": [
+        {
+          "name": "string",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function that takes a string as input which contains only square brackets.\nThe function should return True if and only if there is a valid subsequence of brackets \nwhere at least one bracket in the subsequence is nested.\n\nis_nested('[[]]') \u279e True\nis_nested('[]]]]]]][[[[[]') \u279e False\nis_nested('[][]') \u279e False\nis_nested('[]') \u279e False\nis_nested('[[][]]') \u279e True\nis_nested('[[]][[') \u279e True",
+      "start_line": 2,
+      "end_line": 30
+    }
+  ]
+}

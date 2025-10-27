@@ -1,0 +1,26 @@
+{
+  "module_name": "module_054.py",
+  "path": "data/modules/module_054.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "add",
+      "args": [
+        {
+          "name": "x",
+          "type": "int"
+        },
+        {
+          "name": "y",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "Add two numbers x and y\n>>> add(2, 3)\n5\n>>> add(5, 7)\n12",
+      "start_line": 3,
+      "end_line": 10
+    }
+  ]
+}

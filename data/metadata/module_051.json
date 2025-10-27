@@ -1,0 +1,35 @@
+{
+  "module_name": "module_051.py",
+  "path": "data/modules/module_051.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "encode_shift",
+      "args": [
+        {
+          "name": "s",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "returns encoded string by shifting every character by 5 in the alphabet.",
+      "start_line": 3,
+      "end_line": 7
+    },
+    {
+      "name": "decode_shift",
+      "args": [
+        {
+          "name": "s",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "takes as input string encoded with encode_shift function. Returns decoded string.",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ]
+}

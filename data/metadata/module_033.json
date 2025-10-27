@@ -1,0 +1,41 @@
+{
+  "module_name": "module_033.py",
+  "path": "data/modules/module_033.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [
+    "math"
+  ],
+  "functions": [
+    {
+      "name": "poly",
+      "args": [
+        {
+          "name": "xs",
+          "type": "list"
+        },
+        {
+          "name": "x",
+          "type": "float"
+        }
+      ],
+      "returns": null,
+      "docstring": "Evaluates polynomial with coefficients xs at point x.\nreturn xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n",
+      "start_line": 4,
+      "end_line": 9
+    },
+    {
+      "name": "find_zero",
+      "args": [
+        {
+          "name": "xs",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "xs are coefficients of a polynomial.\nfind_zero find x such that poly(x) = 0.\nfind_zero returns only only zero point, even if there are many.\nMoreover, find_zero only takes list xs having even number of coefficients\nand largest non zero coefficient as it guarantees\na solution.\n>>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x\n-0.5\n>>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3\n1.0",
+      "start_line": 12,
+      "end_line": 34
+    }
+  ]
+}

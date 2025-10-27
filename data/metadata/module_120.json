@@ -1,0 +1,35 @@
+{
+  "module_name": "module_120.py",
+  "path": "data/modules/module_120.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "match_parens",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given a list of two strings, both strings consist of open\nparentheses '(' or close parentheses ')' only.\nYour job is to check if it is possible to concatenate the two strings in\nsome order, that the resulting string will be good.\nA string S is considered to be good if and only if all parentheses in S\nare balanced. For example: the string '(())()' is good, while the string\n'())' is not.\nReturn 'Yes' if there's a way to make a good string, and return 'No' otherwise.\n\nExamples:\nmatch_parens(['()(', ')']) == 'Yes'\nmatch_parens([')', ')']) == 'No'",
+      "start_line": 2,
+      "end_line": 30
+    },
+    {
+      "name": "check",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 17,
+      "end_line": 26
+    }
+  ]
+}

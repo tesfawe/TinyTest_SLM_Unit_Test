@@ -1,0 +1,35 @@
+{
+  "module_name": "module_109.py",
+  "path": "data/modules/module_109.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "count_nums",
+      "args": [
+        {
+          "name": "arr",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function count_nums which takes an array of integers and returns\nthe number of elements which has a sum of digits > 0.\nIf a number is negative, then its first signed digit will be negative:\ne.g. -123 has signed digits -1, 2, and 3.\n>>> count_nums([]) == 0\n>>> count_nums([-1, 11, -11]) == 1\n>>> count_nums([1, 1, 2]) == 3",
+      "start_line": 2,
+      "end_line": 18
+    },
+    {
+      "name": "digits_sum",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 12,
+      "end_line": 17
+    }
+  ]
+}

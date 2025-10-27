@@ -1,0 +1,28 @@
+{
+  "module_name": "module_001.py",
+  "path": "data/modules/module_001.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "has_close_elements",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[float]"
+        },
+        {
+          "name": "threshold",
+          "type": "float"
+        }
+      ],
+      "returns": "bool",
+      "docstring": "Check if in given list of numbers, are any two numbers closer to each other than\ngiven threshold.\n>>> has_close_elements([1.0, 2.0, 3.0], 0.5)\nFalse\n>>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0, 2.0], 0.3)\nTrue",
+      "start_line": 4,
+      "end_line": 19
+    }
+  ]
+}

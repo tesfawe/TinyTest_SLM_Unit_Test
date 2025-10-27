@@ -1,0 +1,22 @@
+{
+  "module_name": "module_101.py",
+  "path": "data/modules/module_101.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "make_a_pile",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a positive integer n, you have to make a pile of n levels of stones.\nThe first level has n stones.\nThe number of stones in the next level is:\n    - the next odd number if n is odd.\n    - the next even number if n is even.\nReturn the number of stones in each level in a list, where element at index\ni represents the number of stones in the level (i+1).\n\nExamples:\n>>> make_a_pile(3)\n[3, 5, 7]",
+      "start_line": 2,
+      "end_line": 16
+    }
+  ]
+}

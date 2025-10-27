@@ -1,0 +1,25 @@
+{
+  "module_name": "module_010.py",
+  "path": "data/modules/module_010.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List",
+    "typing.Tuple"
+  ],
+  "functions": [
+    {
+      "name": "rolling_max",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[int]"
+        }
+      ],
+      "returns": "List[int]",
+      "docstring": "From a given list of integers, generate a list of rolling maximum element found until given moment\nin the sequence.\n>>> rolling_max([1, 2, 3, 2, 3, 4, 2])\n[1, 2, 3, 3, 3, 4, 4]",
+      "start_line": 4,
+      "end_line": 21
+    }
+  ]
+}

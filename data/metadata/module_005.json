@@ -1,0 +1,24 @@
+{
+  "module_name": "module_005.py",
+  "path": "data/modules/module_005.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "mean_absolute_deviation",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[float]"
+        }
+      ],
+      "returns": "float",
+      "docstring": "For a given list of input numbers, calculate Mean Absolute Deviation\naround the mean of this dataset.\nMean Absolute Deviation is the average absolute difference between each\nelement and a centerpoint (mean in this case):\nMAD = average | x - x_mean |\n>>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n1.0",
+      "start_line": 4,
+      "end_line": 14
+    }
+  ]
+}

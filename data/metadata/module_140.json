@@ -1,0 +1,22 @@
+{
+  "module_name": "module_140.py",
+  "path": "data/modules/module_140.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "special_factorial",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "The Brazilian factorial is defined as:\nbrazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!\nwhere n > 0\n\nFor example:\n>>> special_factorial(4)\n288\n\nThe function will receive an integer as input and should return the special\nfactorial of this integer.",
+      "start_line": 2,
+      "end_line": 19
+    }
+  ]
+}

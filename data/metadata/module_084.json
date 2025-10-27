@@ -1,0 +1,22 @@
+{
+  "module_name": "module_084.py",
+  "path": "data/modules/module_084.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "starts_one_ends",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a positive integer n, return the count of the numbers of n-digit\npositive integers that start or end with 1.",
+      "start_line": 2,
+      "end_line": 8
+    }
+  ]
+}

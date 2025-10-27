@@ -1,0 +1,22 @@
+{
+  "module_name": "module_042.py",
+  "path": "data/modules/module_042.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "car_race_collision",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "Imagine a road that's a perfectly straight infinitely long line.\nn cars are driving left to right;  simultaneously, a different set of n cars\nare driving right to left.   The two sets of cars start out being very far from\neach other.  All cars move in the same speed.  Two cars are said to collide\nwhen a car that's moving left to right hits a car that's moving right to left.\nHowever, the cars are infinitely sturdy and strong; as a result, they continue moving\nin their trajectory as if they did not collide.\n\nThis function outputs the number of such collisions.",
+      "start_line": 3,
+      "end_line": 15
+    }
+  ]
+}

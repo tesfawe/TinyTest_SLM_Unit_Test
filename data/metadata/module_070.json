@@ -1,0 +1,22 @@
+{
+  "module_name": "module_070.py",
+  "path": "data/modules/module_070.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "search",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given a non-empty list of positive integers. Return the greatest integer that is greater than \nzero, and has a frequency greater than or equal to the value of the integer itself. \nThe frequency of an integer is the number of times it appears in the list.\nIf no such a value exist, return -1.\nExamples:\n    search([4, 1, 2, 2, 3, 1]) == 2\n    search([1, 2, 2, 3, 3, 3, 4, 4, 4]) == 3\n    search([5, 5, 4, 4, 4]) == -1",
+      "start_line": 2,
+      "end_line": 22
+    }
+  ]
+}

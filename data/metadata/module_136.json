@@ -1,0 +1,22 @@
+{
+  "module_name": "module_136.py",
+  "path": "data/modules/module_136.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "can_arrange",
+      "args": [
+        {
+          "name": "arr",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Create a function which returns the largest index of an element which\nis not greater than or equal to the element immediately preceding it. If\nno such element exists then return -1. The given array will not contain\nduplicate values.\n\nExamples:\ncan_arrange([1,2,4,3,5]) = 3\ncan_arrange([1,2,3]) = -1",
+      "start_line": 2,
+      "end_line": 18
+    }
+  ]
+}

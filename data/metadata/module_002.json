@@ -1,0 +1,24 @@
+{
+  "module_name": "module_002.py",
+  "path": "data/modules/module_002.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "separate_paren_groups",
+      "args": [
+        {
+          "name": "paren_string",
+          "type": "str"
+        }
+      ],
+      "returns": "List[str]",
+      "docstring": "Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\nseparate those group into separate strings and return the list of those.\nSeparate groups are balanced (each open brace is properly closed) and not nested within each other\nIgnore any spaces in the input string.\n>>> separate_paren_groups('( ) (( )) (( )( ))')\n['()', '(())', '(()())']",
+      "start_line": 4,
+      "end_line": 28
+    }
+  ]
+}

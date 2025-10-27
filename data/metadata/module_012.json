@@ -1,0 +1,45 @@
+{
+  "module_name": "module_012.py",
+  "path": "data/modules/module_012.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "string_xor",
+      "args": [
+        {
+          "name": "a",
+          "type": "str"
+        },
+        {
+          "name": "b",
+          "type": "str"
+        }
+      ],
+      "returns": "str",
+      "docstring": "Input are two strings a and b consisting only of 1s and 0s.\nPerform binary XOR on these inputs and return result also as a string.\n>>> string_xor('010', '110')\n'100'",
+      "start_line": 4,
+      "end_line": 16
+    },
+    {
+      "name": "xor",
+      "args": [
+        {
+          "name": "i",
+          "type": null
+        },
+        {
+          "name": "j",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "",
+      "start_line": 10,
+      "end_line": 14
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "module_name": "module_099.py",
+  "path": "data/modules/module_099.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "count_upper",
+      "args": [
+        {
+          "name": "s",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a string s, count the number of uppercase vowels in even indices.\n\nFor example:\ncount_upper('aBCdEf') returns 1\ncount_upper('abcdefg') returns 0\ncount_upper('dBBE') returns 0",
+      "start_line": 2,
+      "end_line": 15
+    }
+  ]
+}

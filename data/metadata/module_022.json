@@ -1,0 +1,24 @@
+{
+  "module_name": "module_022.py",
+  "path": "data/modules/module_022.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "rescale_to_unit",
+      "args": [
+        {
+          "name": "numbers",
+          "type": "List[float]"
+        }
+      ],
+      "returns": "List[float]",
+      "docstring": "Given list of numbers (of at least two elements), apply a linear transform to that list,\nsuch that the smallest number will become 0 and the largest will become 1\n>>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])\n[0.0, 0.25, 0.5, 0.75, 1.0]",
+      "start_line": 4,
+      "end_line": 12
+    }
+  ]
+}

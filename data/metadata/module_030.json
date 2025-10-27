@@ -1,0 +1,28 @@
+{
+  "module_name": "module_030.py",
+  "path": "data/modules/module_030.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "filter_by_prefix",
+      "args": [
+        {
+          "name": "strings",
+          "type": "List[str]"
+        },
+        {
+          "name": "prefix",
+          "type": "str"
+        }
+      ],
+      "returns": "List[str]",
+      "docstring": "Filter an input list of strings only for ones that start with a given prefix.\n>>> filter_by_prefix([], 'a')\n[]\n>>> filter_by_prefix(['abc', 'bcd', 'cde', 'array'], 'a')\n['abc', 'array']",
+      "start_line": 4,
+      "end_line": 11
+    }
+  ]
+}

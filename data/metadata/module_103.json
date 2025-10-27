@@ -1,0 +1,26 @@
+{
+  "module_name": "module_103.py",
+  "path": "data/modules/module_103.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "choose_num",
+      "args": [
+        {
+          "name": "x",
+          "type": null
+        },
+        {
+          "name": "y",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "This function takes two positive numbers x and y and returns the\nbiggest even integer number that is in the range [x, y] inclusive. If \nthere's no such number, then the function should return -1.\n\nFor example:\nchoose_num(12, 15) = 14\nchoose_num(13, 12) = -1",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

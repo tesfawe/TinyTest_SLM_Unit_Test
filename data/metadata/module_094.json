@@ -1,0 +1,22 @@
+{
+  "module_name": "module_094.py",
+  "path": "data/modules/module_094.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "encode",
+      "args": [
+        {
+          "name": "message",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Write a function that takes a message, and encodes in such a \nway that it swaps case of all letters, replaces all vowels in \nthe message with the letter that appears 2 places ahead of that \nvowel in the english alphabet. \nAssume only letters. \n\nExamples:\n>>> encode('test')\n'TGST'\n>>> encode('This is a message')\n'tHKS KS C MGSSCGG'",
+      "start_line": 2,
+      "end_line": 19
+    }
+  ]
+}

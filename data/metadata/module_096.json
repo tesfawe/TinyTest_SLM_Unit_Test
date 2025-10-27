@@ -1,0 +1,22 @@
+{
+  "module_name": "module_096.py",
+  "path": "data/modules/module_096.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "check_dict_case",
+      "args": [
+        {
+          "name": "dict",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a dictionary, return True if all keys are strings in lower \ncase or all keys are strings in upper case, else return False.\nThe function should return False is the given dictionary is empty.\nExamples:\ncheck_dict_case({\"a\":\"apple\", \"b\":\"banana\"}) should return True.\ncheck_dict_case({\"a\":\"apple\", \"A\":\"banana\", \"B\":\"banana\"}) should return False.\ncheck_dict_case({\"a\":\"apple\", 8:\"banana\", \"a\":\"apple\"}) should return False.\ncheck_dict_case({\"Name\":\"John\", \"Age\":\"36\", \"City\":\"Houston\"}) should return False.\ncheck_dict_case({\"STATE\":\"NC\", \"ZIP\":\"12345\" }) should return True.",
+      "start_line": 2,
+      "end_line": 35
+    }
+  ]
+}

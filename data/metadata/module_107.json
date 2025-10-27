@@ -1,0 +1,22 @@
+{
+  "module_name": "module_107.py",
+  "path": "data/modules/module_107.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "f",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Implement the function f that takes n as a parameter,\nand returns a list of size n, such that the value of the element at index i is the factorial of i if i is even\nor the sum of numbers from 1 to i otherwise.\ni starts from 1.\nthe factorial of i is the multiplication of the numbers from 1 to i (1 * 2 * ... * i).\nExample:\nf(5) == [1, 2, 6, 24, 15]",
+      "start_line": 2,
+      "end_line": 21
+    }
+  ]
+}

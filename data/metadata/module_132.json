@@ -1,0 +1,22 @@
+{
+  "module_name": "module_132.py",
+  "path": "data/modules/module_132.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "digits",
+      "args": [
+        {
+          "name": "n",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a positive integer n, return the product of the odd digits.\nReturn 0 if all digits are even.\nFor example:\ndigits(1)  == 1\ndigits(4)  == 0\ndigits(235) == 15",
+      "start_line": 2,
+      "end_line": 20
+    }
+  ]
+}

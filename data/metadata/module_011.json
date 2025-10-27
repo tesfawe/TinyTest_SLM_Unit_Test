@@ -1,0 +1,35 @@
+{
+  "module_name": "module_011.py",
+  "path": "data/modules/module_011.py",
+  "num_functions": 2,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "is_palindrome",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        }
+      ],
+      "returns": "bool",
+      "docstring": "Test if given string is a palindrome",
+      "start_line": 3,
+      "end_line": 5
+    },
+    {
+      "name": "make_palindrome",
+      "args": [
+        {
+          "name": "string",
+          "type": "str"
+        }
+      ],
+      "returns": "str",
+      "docstring": "Find the shortest palindrome that begins with a supplied string.\nAlgorithm idea is simple:\n- Find the longest postfix of supplied string that is a palindrome.\n- Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.\n>>> make_palindrome('')\n''\n>>> make_palindrome('cat')\n'catac'\n>>> make_palindrome('cata')\n'catac'",
+      "start_line": 8,
+      "end_line": 28
+    }
+  ]
+}

@@ -15,6 +15,7 @@ platformdirs==4.5.0
 pluggy==1.6.0
 Pygments==2.19.2
 pytest==8.4.2
+# python==3.12.7
 pytokens==0.2.0
 PyYAML==6.0.3
 rich==14.2.0

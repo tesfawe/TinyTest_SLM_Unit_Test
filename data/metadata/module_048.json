@@ -1,0 +1,22 @@
+{
+  "module_name": "module_048.py",
+  "path": "data/modules/module_048.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "median",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return median of elements in the list l.\n>>> median([3, 1, 2, 4, 5])\n3\n>>> median([-10, 4, 6, 1000, 10, 20])\n15.0",
+      "start_line": 3,
+      "end_line": 14
+    }
+  ]
+}

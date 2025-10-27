@@ -1,0 +1,24 @@
+{
+  "module_name": "module_004.py",
+  "path": "data/modules/module_004.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List"
+  ],
+  "functions": [
+    {
+      "name": "below_zero",
+      "args": [
+        {
+          "name": "operations",
+          "type": "List[int]"
+        }
+      ],
+      "returns": "bool",
+      "docstring": "You're given a list of deposit and withdrawal operations on a bank account that starts with\nzero balance. Your task is to detect if at any point the balance of account fallls below zero, and\nat that point function should return True. Otherwise it should return False.\n>>> below_zero([1, 2, 3])\nFalse\n>>> below_zero([1, 2, -4, 5])\nTrue",
+      "start_line": 4,
+      "end_line": 20
+    }
+  ]
+}

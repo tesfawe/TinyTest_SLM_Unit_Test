@@ -1,0 +1,26 @@
+{
+  "module_name": "module_155.py",
+  "path": "data/modules/module_155.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "cycpattern_check",
+      "args": [
+        {
+          "name": "a",
+          "type": null
+        },
+        {
+          "name": "b",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word\ncycpattern_check(\"abcd\",\"abd\") => False\ncycpattern_check(\"hello\",\"ell\") => True\ncycpattern_check(\"whassup\",\"psus\") => False\ncycpattern_check(\"abab\",\"baa\") => True\ncycpattern_check(\"efef\",\"eeff\") => False\ncycpattern_check(\"himenss\",\"simen\") => True",
+      "start_line": 2,
+      "end_line": 18
+    }
+  ]
+}

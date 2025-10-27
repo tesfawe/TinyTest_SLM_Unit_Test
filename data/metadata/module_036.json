@@ -1,0 +1,22 @@
+{
+  "module_name": "module_036.py",
+  "path": "data/modules/module_036.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "max_element",
+      "args": [
+        {
+          "name": "l",
+          "type": "list"
+        }
+      ],
+      "returns": null,
+      "docstring": "Return maximum element in the list.\n>>> max_element([1, 2, 3])\n3\n>>> max_element([5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10])\n123",
+      "start_line": 3,
+      "end_line": 14
+    }
+  ]
+}

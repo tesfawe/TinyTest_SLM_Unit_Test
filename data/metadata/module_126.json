@@ -1,0 +1,22 @@
+{
+  "module_name": "module_126.py",
+  "path": "data/modules/module_126.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "split_words",
+      "args": [
+        {
+          "name": "txt",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a string of words, return a list of words split on whitespace, if no whitespaces exists in the text you\nshould split on commas ',' if no commas exists you should return the number of lower-case letters with odd order in the\nalphabet, ord('a') = 0, ord('b') = 1, ... ord('z') = 25\nExamples\nsplit_words(\"Hello world!\") \u279e [\"Hello\", \"world!\"]\nsplit_words(\"Hello,world!\") \u279e [\"Hello\", \"world!\"]\nsplit_words(\"abcdef\") == 3",
+      "start_line": 2,
+      "end_line": 17
+    }
+  ]
+}

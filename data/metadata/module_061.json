@@ -1,0 +1,22 @@
+{
+  "module_name": "module_061.py",
+  "path": "data/modules/module_061.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "sum_to_n",
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "returns": null,
+      "docstring": "sum_to_n is a function that sums numbers from 1 to n.\n>>> sum_to_n(30)\n465\n>>> sum_to_n(100)\n5050\n>>> sum_to_n(5)\n15\n>>> sum_to_n(10)\n55\n>>> sum_to_n(1)\n1",
+      "start_line": 3,
+      "end_line": 16
+    }
+  ]
+}

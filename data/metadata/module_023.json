@@ -1,0 +1,25 @@
+{
+  "module_name": "module_023.py",
+  "path": "data/modules/module_023.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [
+    "typing.List",
+    "typing.Any"
+  ],
+  "functions": [
+    {
+      "name": "filter_integers",
+      "args": [
+        {
+          "name": "values",
+          "type": "List[Any]"
+        }
+      ],
+      "returns": "List[int]",
+      "docstring": "Filter given list of any python values only for integers\n>>> filter_integers(['a', 3.14, 5])\n[5]\n>>> filter_integers([1, 2, 3, 'abc', {}, []])\n[1, 2, 3]",
+      "start_line": 4,
+      "end_line": 11
+    }
+  ]
+}

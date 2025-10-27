@@ -1,0 +1,22 @@
+{
+  "module_name": "module_086.py",
+  "path": "data/modules/module_086.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "add",
+      "args": [
+        {
+          "name": "lst",
+          "type": null
+        }
+      ],
+      "returns": null,
+      "docstring": "Given a non-empty list of integers lst. add the even elements that are at odd indices..\n\n\nExamples:\n    add([4, 2, 6, 7]) ==> 2",
+      "start_line": 2,
+      "end_line": 9
+    }
+  ]
+}

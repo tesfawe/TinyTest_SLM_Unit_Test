@@ -1,0 +1,26 @@
+{
+  "module_name": "module_055.py",
+  "path": "data/modules/module_055.py",
+  "num_functions": 1,
+  "num_classes": 0,
+  "imports": [],
+  "functions": [
+    {
+      "name": "same_chars",
+      "args": [
+        {
+          "name": "s0",
+          "type": "str"
+        },
+        {
+          "name": "s1",
+          "type": "str"
+        }
+      ],
+      "returns": null,
+      "docstring": "Check if two words have the same characters.\n>>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')\nTrue\n>>> same_chars('abcd', 'dddddddabc')\nTrue\n>>> same_chars('dddddddabc', 'abcd')\nTrue\n>>> same_chars('eabcd', 'dddddddabc')\nFalse\n>>> same_chars('abcd', 'dddddddabce')\nFalse\n>>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')\nFalse",
+      "start_line": 3,
+      "end_line": 19
+    }
+  ]
+}
