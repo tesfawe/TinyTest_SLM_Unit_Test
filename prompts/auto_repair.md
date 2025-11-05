@@ -1,40 +1,33 @@
 # Defines AUTO_REPAIR_TEMPLATE_v1
 
 AUTO_REPAIR_TEMPLATE_v1 = r"""
-You are an assistant that fixes failing pytest tests for a given Python module.
+Fix the failing tests below. Generate a complete pytest test file with corrected versions.
 
-Task:
-- Analyze the module under test and the failing pytest log.
-- Produce a corrected pytest test file that thoroughly tests the function but avoids brittle or incorrect assertions.
-- Prefer deterministic assertions over randomized property checks unless seeded.
-- Ensure imports and test function names are valid and runnable by pytest.
-
-Module name: {module_name}
-Target function: {function_name}
+Module: {module_name}
+Function: {function_name}
 
 Code under test:
 ```python
 {code}
 ```
 
-Previous failing test code:
+Failing tests (fix these):
 ```python
-{previous_test}
+{failing_tests}
 ```
 
-Pytest failure log (for context):
+Error details:
 ```
 {pytest_log}
 ```
 
-CRITICAL RULES:
-1. Start IMMEDIATELY with: from data.modules.{module_name} import {function_name}
-2. Do NOT include markdown code fences (no ```)
-3. Do NOT include explanations or comments
-4. Do NOT redefine the function
-5. Write 4-6 test functions with names like: test_description_of_what_is_tested
-6. Each test should use assert statements
-7. Cover: normal cases, edge cases, empty inputs, and boundary values
+RULES:
+1. Start: from data.modules.{module_name} import {function_name}
+2. Fix the failing tests based on error log
+3. Write a complete test file (4-6 test functions covering normal/edge cases)
+4. No markdown, no comments
+5. Output ONLY Python code
+6. Do NOT redefine the function
 
 Output: a single Python test file content.
 """

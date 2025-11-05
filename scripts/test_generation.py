@@ -13,6 +13,8 @@ import argparse
 import subprocess
 from pathlib import Path
 import json
+import time
+from typing import Tuple
 
 def load_template(template_key: str) -> str:
     """Load a prompt template from the prompts/*.md files.
@@ -80,25 +82,81 @@ def build_prompt(module_path: Path, metadata_path: Path | None = None, template:
     return prompt
 
 
-def generate_with_ollama(model: str, prompt: str) -> str:
-    """Run a local Ollama model and return the generated text."""
-
-    result = subprocess.run(
-        ["ollama", "run", model],
-        input=prompt,
-        capture_output=True,
-        text=True
-    )
-
-    if result.returncode != 0:
-        raise RuntimeError(f"Ollama error: {result.stderr.strip()}")
-
-    output = result.stdout.strip()
+def generate_with_ollama(model: str, prompt: str, seed: int | None = None, temperature: float | None = None) -> Tuple[str, dict]:
+    """
+    Run a local Ollama model via API and return the generated text with metadata.
+    Returns: (generated_text, metadata_dict) where metadata includes tokens, time, etc.
+    """
+    import requests
     
-    # Clean up common SLM artifacts
-    output = clean_output(output)
+    url = "http://localhost:11434/api/generate"
     
-    return output
+    payload = {
+        "model": model,
+        "prompt": prompt,
+        "stream": False,
+    }
+    
+    if seed is not None:
+        payload["seed"] = seed
+    if temperature is not None:
+        payload["temperature"] = temperature
+    
+    start_time = time.time()
+    
+    try:
+        response = requests.post(url, json=payload, timeout=300)
+        response.raise_for_status()
+        data = response.json()
+        
+        elapsed_time = time.time() - start_time
+        
+        output = data.get("response", "").strip()
+        output = clean_output(output)
+        
+        prompt_tokens = data.get("prompt_eval_count")
+        completion_tokens = data.get("eval_count")
+        total_tokens = None
+        if prompt_tokens is not None and completion_tokens is not None:
+            total_tokens = prompt_tokens + completion_tokens
+        
+        metadata = {
+            "time": elapsed_time,
+            "tokens": total_tokens,
+            "prompt_tokens": prompt_tokens,
+            "completion_tokens": completion_tokens,
+            "total_tokens": total_tokens,
+            "cost": None,  # Ollama doesn't provide cost, local model
+        }
+        
+        return output, metadata
+        
+    except requests.exceptions.RequestException as e:
+        # Fallback to CLI if API fails
+        result = subprocess.run(
+            ["ollama", "run", model],
+            input=prompt,
+            capture_output=True,
+            text=True
+        )
+        
+        if result.returncode != 0:
+            raise RuntimeError(f"Ollama error: {result.stderr.strip()}")
+        
+        elapsed_time = time.time() - start_time
+        output = result.stdout.strip()
+        output = clean_output(output)
+        
+        metadata = {
+            "time": elapsed_time,
+            "tokens": None,
+            "prompt_tokens": None,
+            "completion_tokens": None,
+            "total_tokens": None,
+            "cost": None,
+        }
+        
+        return output, metadata
 
 
 def clean_output(text: str) -> str:
@@ -165,10 +223,12 @@ def main():
     print(f"Generating tests for {module_path.name} using {args.model}...")
 
     try:
-        output = generate_with_ollama(args.model, prompt)
+        output, metadata = generate_with_ollama(args.model, prompt)
         test_file = save_generated_test(module_path, output)
         print(f"\n Test file saved: {test_file}")
         print(f"Run with: pytest {test_file}")
+        if metadata.get("total_tokens"):
+            print(f"Tokens used: {metadata['total_tokens']}")
     except Exception as e:
         print(f"Generation failed: {e}")
 

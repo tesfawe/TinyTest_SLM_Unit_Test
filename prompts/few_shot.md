@@ -1,4 +1,4 @@
-FEW_SHOT_TEMPLATE_v1 = """You are a Python testing expert. Generate pytest unit tests for the given function.
+FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function.
 
 EXAMPLE 1:
 Function to test:
@@ -66,12 +66,11 @@ NOW GENERATE TESTS FOR THIS FUNCTION:
 
 CRITICAL RULES:
 1. Start IMMEDIATELY with: from data.modules.{module_name} import {function_name}
-2. Do NOT include markdown code fences (no ```)
-3. Do NOT include explanations or comments
-4. Do NOT redefine the function
-5. Write 4-6 test functions with names like: test_description_of_what_is_tested
-6. Each test should use assert statements
-7. Cover: normal cases, edge cases, empty inputs, and boundary values
+2. Do NOT redefine the function
+3. Do NOT include markdown or explanations or comments
+4. Write 4-6 test functions with names like: test_description_of_what_is_tested
+5. Each test should use assert statements
+6. Cover: normal cases, edge cases, empty inputs, and boundary values
 
 OUTPUT ONLY VALID PYTHON CODE BELOW:
 """
