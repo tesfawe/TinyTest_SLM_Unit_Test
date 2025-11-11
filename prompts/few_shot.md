@@ -1,4 +1,4 @@
-FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function.
+FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function. Only test the logic that exists, do not invent new behavior or validation that the function does not perform.
 
 EXAMPLE 1:
 Function to test:
@@ -50,12 +50,8 @@ def test_not_palindrome():
 def test_palindrome_with_spaces():
     assert is_palindrome("A man a plan a canal Panama") == True
 
-def test_empty_and_single():
-    assert is_palindrome("") == True
+def test_single_character_palindrome():
     assert is_palindrome("a") == True
-
-def test_with_punctuation():
-    assert is_palindrome("Was it a car or a cat I saw?") == True
 ```
 
 NOW GENERATE TESTS FOR THIS FUNCTION:
@@ -65,12 +61,15 @@ NOW GENERATE TESTS FOR THIS FUNCTION:
 ```
 
 CRITICAL RULES:
-1. Start IMMEDIATELY with: from data.modules.{module_name} import {function_name}
-2. Do NOT redefine the function
-3. Do NOT include markdown or explanations or comments
-4. Write 4-6 test functions with names like: test_description_of_what_is_tested
-5. Each test should use assert statements
-6. Cover: normal cases, edge cases, empty inputs, and boundary values
+1. Start immediately with: from data.modules.{module_name} import {function_name}
+2. Do not redefine the function.
+3. Output only Python code — no markdown, explanations, or comments.
+4. Write exactly 4 or 5 test functions with names like test_description_of_what_is_tested.
+5. Each test must use assert statements.
+6. Before writing, understand what the function actually supports.
+   - Generate tests only for valid and supported inputs based on the function’s logic or docstring.
+   - Skip invalid, undefined, or unhandled cases (e.g., empty inputs, None, wrong types).
+7. Cover normal use cases, small edge cases, and boundary values within valid input ranges.
 
 OUTPUT ONLY VALID PYTHON CODE BELOW:
 """

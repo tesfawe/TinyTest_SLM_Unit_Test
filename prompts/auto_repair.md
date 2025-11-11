@@ -1,35 +1,22 @@
-# Defines AUTO_REPAIR_TEMPLATE_v1
+AUTO_REPAIR_TEMPLATE_v1 = """Fix only the failing test functions in the given pytest file, based on the error logs. Newly generate file should contain newly fixed and prevously correct ones. 
 
-AUTO_REPAIR_TEMPLATE_v1 = r"""
-Fix the failing tests below. Generate a complete pytest test file with corrected versions.
+Module name: {module_name}
+Function name: {function_name}
 
-Module: {module_name}
-Function: {function_name}
-
-Code under test:
-```python
+Function under test:
 {code}
-```
 
-Failing tests (fix these):
-```python
+Failing test functions (to fix only these):
 {failing_tests}
-```
 
-Error details:
-```
+Pytest failure log:
 {pytest_log}
-```
 
 RULES:
-1. Start: from data.modules.{module_name} import {function_name}
-2. Fix the failing tests based on error log
-3. Write a complete test file (4-6 test functions covering normal/edge cases)
-4. No markdown, no comments
-5. Output ONLY Python code
-6. Do NOT redefine the function
+1. Keep all passing tests unchanged.
+2. Fix only the failing tests using the error messages above.
+3. Start the output with: from data.modules.{module_name} import {function_name}
+4. Do not include markdown, explanations, or comments.
 
-Output: a single Python test file content.
+Output only the final repaired test file content below:
 """
-
-

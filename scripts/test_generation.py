@@ -10,6 +10,7 @@ Usage:
 """
 
 import argparse
+import requests
 import subprocess
 from pathlib import Path
 import json
@@ -87,20 +88,22 @@ def generate_with_ollama(model: str, prompt: str, seed: int | None = None, tempe
     Run a local Ollama model via API and return the generated text with metadata.
     Returns: (generated_text, metadata_dict) where metadata includes tokens, time, etc.
     """
-    import requests
+
+    # if seed is not None:
+    #     payload["seed"] = seed
+    # if temperature is not None:
+    #     payload["temperature"] = temperature
     
     url = "http://localhost:11434/api/generate"
     
     payload = {
         "model": model,
         "prompt": prompt,
-        "stream": False,
+        "options": {
+            "temperature": temperature
+        }
     }
     
-    if seed is not None:
-        payload["seed"] = seed
-    if temperature is not None:
-        payload["temperature"] = temperature
     
     start_time = time.time()
     
