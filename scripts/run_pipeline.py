@@ -12,7 +12,7 @@ from .utils.runner import run_pytest
 from .utils.tagging import tag_status_and_failure, parse_test_counts
 
 
-# python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-5 --max_retries 1
+# python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-5 --max_retries 1 --temperature 0.3
 
 
 
