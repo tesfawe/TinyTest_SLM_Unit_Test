@@ -94,7 +94,7 @@ def generate_with_ollama(model: str, prompt: str, seed: int | None = None, tempe
     # if temperature is not None:
     #     payload["temperature"] = temperature
     
-    url = "http://localhost:11434/api/generate"
+    url = "http://127.0.0.1:11434/api/generate"
     
     payload = {
         "model": model,
