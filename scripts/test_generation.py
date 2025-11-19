@@ -6,12 +6,11 @@ Generate pytest-style unit tests for TinyTest modules using Small Language Model
 (Phi-3, Gemma-2B, or Mistral-7B) through Ollama.
 
 Usage:
-    python scripts/test.py --model llama3.2 --module data/modules/module_001.py --template few_shot
+    python scripts/test_generation.py --model llama3.2 --module data/modules/module_001.py --template few_shot
 """
 
 import argparse
 import requests
-import subprocess
 from pathlib import Path
 import json
 import time
@@ -88,78 +87,85 @@ def generate_with_ollama(model: str, prompt: str, seed: int | None = None, tempe
     Run a local Ollama model via API and return the generated text with metadata.
     Returns: (generated_text, metadata_dict) where metadata includes tokens, time, etc.
     """
-
-    # if seed is not None:
-    #     payload["seed"] = seed
-    # if temperature is not None:
-    #     payload["temperature"] = temperature
     
     url = "http://localhost:11434/api/generate"
     
     payload = {
         "model": model,
         "prompt": prompt,
-        "options": {
-            "temperature": temperature
-        }
+        # "format": "json",
+        "stream": False,
+        "options": {}
     }
     
+    # if seed is not None:
+    #     payload["options"]["seed"] = seed
+    if temperature is not None:
+        payload["options"]["temperature"] = temperature
     
     start_time = time.time()
     
     try:
-        response = requests.post(url, json=payload, timeout=300)
+        response = requests.post(url, json=payload, timeout=300, stream=False)
         response.raise_for_status()
         data = response.json()
         
         elapsed_time = time.time() - start_time
         
+        # Extract response text
         output = data.get("response", "").strip()
+        
+        # If response is JSON-encoded, parse it
+        if output.startswith('{') or output.startswith('['):
+            try:
+                parsed = json.loads(output)
+                # If it's a dict, try to extract the actual code
+                if isinstance(parsed, dict):
+                    # Look for common keys that might contain the code
+                    output = parsed.get("code") or parsed.get("test") or str(parsed)
+                else:
+                    output = str(parsed)
+            except json.JSONDecodeError:
+                pass  # Not valid JSON, use as-is
+        
         output = clean_output(output)
         
-        prompt_tokens = data.get("prompt_eval_count")
-        completion_tokens = data.get("eval_count")
+        # Extract token counts and timing information
+        prompt_eval_count = data.get("prompt_eval_count")
+        eval_count = data.get("eval_count")
+        eval_duration = data.get("eval_duration")
+        total_duration = data.get("total_duration")
+        load_duration = data.get("load_duration")
+        prompt_eval_duration = data.get("prompt_eval_duration")
+        
+        # Calculate tokens per second: eval_count / eval_duration * 10^9
+        tokens_per_second = None
+        if eval_count is not None and eval_duration is not None and eval_duration > 0:
+            tokens_per_second = (eval_count / eval_duration) * 1_000_000_000
+        
+        # Calculate total tokens for convenience
         total_tokens = None
-        if prompt_tokens is not None and completion_tokens is not None:
-            total_tokens = prompt_tokens + completion_tokens
+        if prompt_eval_count is not None and eval_count is not None:
+            total_tokens = prompt_eval_count + eval_count
         
         metadata = {
             "time": elapsed_time,
-            "tokens": total_tokens,
-            "prompt_tokens": prompt_tokens,
-            "completion_tokens": completion_tokens,
             "total_tokens": total_tokens,
-            "cost": None,  # Ollama doesn't provide cost, local model
+            "prompt_eval_count": prompt_eval_count,
+            "prompt_eval_duration": prompt_eval_duration,
+            "eval_count": eval_count,
+            "eval_duration": eval_duration,
+            "total_duration": total_duration,
+            "load_duration": load_duration,
+            "tokens_per_second": tokens_per_second,
+            "done_reason": data.get("done_reason"),
         }
         
         return output, metadata
         
     except requests.exceptions.RequestException as e:
-        # Fallback to CLI if API fails
-        result = subprocess.run(
-            ["ollama", "run", model],
-            input=prompt,
-            capture_output=True,
-            text=True
-        )
-        
-        if result.returncode != 0:
-            raise RuntimeError(f"Ollama error: {result.stderr.strip()}")
-        
-        elapsed_time = time.time() - start_time
-        output = result.stdout.strip()
-        output = clean_output(output)
-        
-        metadata = {
-            "time": elapsed_time,
-            "tokens": None,
-            "prompt_tokens": None,
-            "completion_tokens": None,
-            "total_tokens": None,
-            "cost": None,
-        }
-        
-        return output, metadata
+        # Re-raise with more context - API is required for token counts
+        raise RuntimeError(f"Failed to connect to Ollama API at {url}: {e}") from e
 
 
 def clean_output(text: str) -> str:

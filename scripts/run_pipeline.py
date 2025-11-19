@@ -90,7 +90,7 @@ def main():
         status, failure_type = tag_status_and_failure(log_raw, test_file_raw)
         test_counts = parse_test_counts(log_raw)
 
-        # Add initial iteration with tokens and time
+        # Add initial iteration with all metadata
         iteration = {
             "iteration": 0,
             "kind": "initial",
@@ -103,7 +103,15 @@ def main():
             "tests_error": test_counts["tests_error"],
             "tests_total": test_counts["tests_total"],
             "time": gen_metadata.get("time"),
-            "tokens": gen_metadata.get("total_tokens"),
+            "total_tokens": gen_metadata.get("total_tokens"),
+            "prompt_eval_count": gen_metadata.get("prompt_eval_count"),
+            "prompt_eval_duration": gen_metadata.get("prompt_eval_duration"),
+            "eval_count": gen_metadata.get("eval_count"),
+            "eval_duration": gen_metadata.get("eval_duration"),
+            "total_duration": gen_metadata.get("total_duration"),
+            "load_duration": gen_metadata.get("load_duration"),
+            "tokens_per_second": gen_metadata.get("tokens_per_second"),
+            "done_reason": gen_metadata.get("done_reason"),
         }
         metadata["iterations"].append(iteration)
 
@@ -137,7 +145,7 @@ def main():
                 status, failure_type = tag_status_and_failure(log, repaired_path)
                 test_counts = parse_test_counts(log)
 
-                # Add repair iteration with tokens and time
+                # Add repair iteration with all metadata
                 iteration = {
                     "iteration": retries,
                     "kind": "repair",
@@ -150,7 +158,15 @@ def main():
                     "tests_error": test_counts["tests_error"],
                     "tests_total": test_counts["tests_total"],
                     "time": repair_metadata.get("time"),
-                    "tokens": repair_metadata.get("total_tokens"),
+                    "total_tokens": repair_metadata.get("total_tokens"),
+                    "prompt_eval_count": repair_metadata.get("prompt_eval_count"),
+                    "prompt_eval_duration": repair_metadata.get("prompt_eval_duration"),
+                    "eval_count": repair_metadata.get("eval_count"),
+                    "eval_duration": repair_metadata.get("eval_duration"),
+                    "total_duration": repair_metadata.get("total_duration"),
+                    "load_duration": repair_metadata.get("load_duration"),
+                    "tokens_per_second": repair_metadata.get("tokens_per_second"),
+                    "done_reason": repair_metadata.get("done_reason"),
                 }
                 metadata["iterations"].append(iteration)
 
