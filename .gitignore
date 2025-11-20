@@ -7,6 +7,7 @@ coverage_summary_run_id_*.txt
 
 run_*.json
 .coverage
+__pycache__/ 
 
 
 
