@@ -1,0 +1,14 @@
+runs/
+consolidated_tests/
+mut_workspace/data/
+mut_workspace/mutants/
+mut_workspace/tests/
+coverage_summary_run_id_*.txt
+
+run_*.json
+.coverage
+
+
+
+
+

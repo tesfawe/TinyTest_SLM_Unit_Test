@@ -179,6 +179,8 @@ def analyze_runs(runs_dir: Path = Path("runs")) -> Dict:
                 stats["by_prompt"][prompt_id]["passed"] += 1
             else:
                 stats["by_prompt"][prompt_id]["failed"] += 1
+
+            stats["modules"].append(module_info)
             
         except Exception as e:
             pass
