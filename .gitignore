@@ -13,7 +13,8 @@ old_runs/
 .vscode/
 .idea/
 *.pyc
-
+.env
+venv/
 
 
 

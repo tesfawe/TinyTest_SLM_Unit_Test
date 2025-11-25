@@ -3,18 +3,22 @@
 generate_tests_ollama.py
 
 Generate pytest-style unit tests for TinyTest modules using Small Language Models
-(Phi-3, Gemma-2B, or Mistral-7B) through Ollama.
+(Phi-3, Gemma-2B, or Mistral-7B) through Ollama, or via Gemini/OpenAI.
 
 Usage:
-    python scripts/test_generation.py --model llama3.2 --module data/modules/module_001.py --template few_shot
+    python scripts/test_generation.py --model llama3.2 --module data/modules/module_001.py --template few_shot --provider ollama
 """
 
 import argparse
-import requests
-from pathlib import Path
 import json
 import time
+from pathlib import Path
 from typing import Tuple
+
+# Adjust import path to find src
+import sys
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from src.llm_providers import get_provider, LLMProvider
 
 def load_template(template_key: str) -> str:
     """Load a prompt template from the prompts/*.md files.
@@ -82,123 +86,6 @@ def build_prompt(module_path: Path, metadata_path: Path | None = None, template:
     return prompt
 
 
-def generate_with_ollama(model: str, prompt: str, seed: int | None = None, temperature: float | None = None) -> Tuple[str, dict]:
-    """
-    Run a local Ollama model via API and return the generated text with metadata.
-    Returns: (generated_text, metadata_dict) where metadata includes tokens, time, etc.
-    """
-    
-    url = "http://127.0.0.1:11434/api/generate"
-    
-    payload = {
-        "model": model,
-        "prompt": prompt,
-        # "format": "json",
-        "stream": False,
-        "options": {}
-    }
-    
-    # if seed is not None:
-    #     payload["options"]["seed"] = seed
-    if temperature is not None:
-        payload["options"]["temperature"] = temperature
-    
-    start_time = time.time()
-    
-    try:
-        response = requests.post(url, json=payload, timeout=300, stream=False)
-        response.raise_for_status()
-        data = response.json()
-        
-        elapsed_time = time.time() - start_time
-        
-        # Extract response text
-        output = data.get("response", "").strip()
-        
-        # If response is JSON-encoded, parse it
-        if output.startswith('{') or output.startswith('['):
-            try:
-                parsed = json.loads(output)
-                # If it's a dict, try to extract the actual code
-                if isinstance(parsed, dict):
-                    # Look for common keys that might contain the code
-                    output = parsed.get("code") or parsed.get("test") or str(parsed)
-                else:
-                    output = str(parsed)
-            except json.JSONDecodeError:
-                pass  # Not valid JSON, use as-is
-        
-        output = clean_output(output)
-        
-        # Extract token counts and timing information
-        prompt_eval_count = data.get("prompt_eval_count")
-        eval_count = data.get("eval_count")
-        eval_duration = data.get("eval_duration")
-        total_duration = data.get("total_duration")
-        load_duration = data.get("load_duration")
-        prompt_eval_duration = data.get("prompt_eval_duration")
-        
-        # Calculate tokens per second: eval_count / eval_duration * 10^9
-        tokens_per_second = None
-        if eval_count is not None and eval_duration is not None and eval_duration > 0:
-            tokens_per_second = (eval_count / eval_duration) * 1_000_000_000
-        
-        # Calculate total tokens for convenience
-        total_tokens = None
-        if prompt_eval_count is not None and eval_count is not None:
-            total_tokens = prompt_eval_count + eval_count
-        
-        metadata = {
-            "time": elapsed_time,
-            "total_tokens": total_tokens,
-            "prompt_eval_count": prompt_eval_count,
-            "prompt_eval_duration": prompt_eval_duration,
-            "eval_count": eval_count,
-            "eval_duration": eval_duration,
-            "total_duration": total_duration,
-            "load_duration": load_duration,
-            "tokens_per_second": tokens_per_second,
-            "done_reason": data.get("done_reason"),
-        }
-        
-        return output, metadata
-        
-    except requests.exceptions.RequestException as e:
-        # Re-raise with more context - API is required for token counts
-        raise RuntimeError(f"Failed to connect to Ollama API at {url}: {e}") from e
-
-
-def clean_output(text: str) -> str:
-    """Remove markdown code fences and other artifacts from SLM output."""
-    lines = text.split('\n')
-    cleaned = []
-    in_code_block = False
-    
-    for line in lines:
-        # Skip markdown code fence markers
-        if line.strip().startswith('```'):
-            in_code_block = not in_code_block
-            continue
-        
-        # Skip explanatory text before first import/def
-        if not cleaned and not (line.strip().startswith('from ') or line.strip().startswith('import ') or line.strip().startswith('def ')):
-            continue    # skip explanatory text before first import/def             
-            
-        cleaned.append(line)
-    
-    result = '\n'.join(cleaned)
-    
-    # Remove trailing explanations after last test
-    lines = result.split('\n')
-    last_code_line = len(lines) - 1
-    for i in range(len(lines) - 1, -1, -1):
-        if lines[i].strip().startswith('assert ') or lines[i].strip().startswith('def test_'):
-            last_code_line = i
-            break
-    
-    return '\n'.join(lines[:last_code_line + 1]) + '\n'
-
-
 def save_generated_test(module_path: Path, output_text: str, output_dir: Path = Path("data/generated_tests")) -> Path:
     """Save generated test code to file."""
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -208,12 +95,14 @@ def save_generated_test(module_path: Path, output_text: str, output_dir: Path = 
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate unit tests using Ollama SLMs.")
+    parser = argparse.ArgumentParser(description="Generate unit tests using LLMs.")
     parser.add_argument("--model", type=str, default="phi3", help="Model name (phi3, mistral, gemma, etc.)")
     parser.add_argument("--module", type=str, required=True, help="Path to Python module to analyze")
     parser.add_argument("--template", type=str, default="few_shot", 
                        choices=["few_shot", "structured", "zero_shot"],
                        help="Prompt template style")
+    parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "gemini", "openai"],
+                       help="LLM provider to use")
     
     args = parser.parse_args()
 
@@ -229,10 +118,11 @@ def main():
         template=args.template
     )
     
-    print(f"Generating tests for {module_path.name} using {args.model}...")
+    print(f"Generating tests for {module_path.name} using {args.model} via {args.provider}...")
 
     try:
-        output, metadata = generate_with_ollama(args.model, prompt)
+        provider = get_provider(args.provider)
+        output, metadata = provider.generate(prompt, args.model)
         test_file = save_generated_test(module_path, output)
         print(f"\n Test file saved: {test_file}")
         print(f"Run with: pytest {test_file}")

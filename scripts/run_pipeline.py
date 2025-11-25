@@ -4,7 +4,12 @@ import time
 from pathlib import Path
 from typing import Iterable, List
 
-from .test_generation import build_prompt, generate_with_ollama
+# Adjust import path to find src
+import sys
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from src.llm_providers import get_provider, LLMProvider
+
+from .test_generation import build_prompt
 from .auto_repair import auto_repair
 from .utils.file_ops import make_run_root, module_run_dir, write_text
 from .utils.logger import write_json
@@ -12,7 +17,7 @@ from .utils.runner import run_pytest
 from .utils.tagging import tag_status_and_failure, parse_test_counts
 
 
-# python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-5 --max_retries 1 --temperature 0.3
+# python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-5 --max_retries 1 --temperature 0.3 --provider ollama
 
 
 
@@ -33,13 +38,14 @@ def iter_modules(modules_dir: Path, start: int | None, end: int | None) -> Itera
 
 def main():
     parser = argparse.ArgumentParser(description="End-to-end TinyTest pipeline: gen → run → auto-repair")
-    parser.add_argument("--model", required=True, help="Ollama model name (e.g., phi3, mistral, gemma)")
+    parser.add_argument("--model", required=True, help="Model name (e.g., phi3, mistral, gemma, gpt-4o, gemini-2.5-flash-lite)")
     parser.add_argument("--template", default="few_shot", choices=["few_shot", "structured", "zero_shot"], help="Prompt template for initial generation")
     parser.add_argument("--modules_dir", default="data/modules", help="Directory containing source modules")
     parser.add_argument("--max_retries", type=int, default=2, help="Max auto-repair attempts after initial failure")
     parser.add_argument("--range", dest="range_", default=None, help="Module index range like 1-20 (optional)")
     parser.add_argument("--seed", type=int, default=None, help="Random seed for model generation")
     parser.add_argument("--temperature", type=float, default=None, help="Temperature for model generation")
+    parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "gemini", "openai"], help="LLM provider to use")
     args = parser.parse_args()
 
     modules_dir = Path(args.modules_dir)
@@ -58,6 +64,13 @@ def main():
             raise ValueError("--range must be like '1-20' (start-end)")
 
     run_root = make_run_root(args.model, args.template)
+    
+    # Initialize provider
+    try:
+        provider = get_provider(args.provider)
+    except Exception as e:
+        print(f"Error initializing provider: {e}")
+        return
 
     for module_path in iter_modules(modules_dir, start, end):
         mod_dir = module_run_dir(run_root, module_path.stem)
@@ -67,6 +80,7 @@ def main():
         metadata = {
             "module_id": module_id,
             "model": args.model,
+            "provider": args.provider,
             "prompt_id": args.template,  # few_shot/zero_shot/structured
             "seed": args.seed,
             "temp": args.temperature,
@@ -77,7 +91,12 @@ def main():
 
         # 1) Generate tests (initial iteration)
         prompt = build_prompt(module_path, Path("data/metadata") / f"{module_path.stem}.json", template=args.template)
-        generated_text, gen_metadata = generate_with_ollama(args.model, prompt, seed=args.seed, temperature=args.temperature)
+        
+        try:
+            generated_text, gen_metadata = provider.generate(prompt, args.model, seed=args.seed, temperature=args.temperature)
+        except Exception as e:
+            print(f"Generation failed for {module_id}: {e}")
+            continue
 
         test_file_raw = mod_dir / f"{module_path.stem}_test_raw.py"
         write_text(test_file_raw, generated_text)
@@ -127,14 +146,20 @@ def main():
             
             while retries < args.max_retries:
                 retries += 1
-                repaired_text, repair_metadata = auto_repair(
-                    model=args.model,
-                    module_path=module_path,
-                    failing_test_path=cur_test_path,
-                    pytest_log=cur_log,
-                    seed=args.seed,
-                    temperature=args.temperature,
-                )
+                try:
+                    repaired_text, repair_metadata = auto_repair(
+                        provider=provider,
+                        model=args.model,
+                        module_path=module_path,
+                        failing_test_path=cur_test_path,
+                        pytest_log=cur_log,
+                        seed=args.seed,
+                        temperature=args.temperature,
+                    )
+                except Exception as e:
+                    print(f"Auto-repair failed for {module_id} retry {retries}: {e}")
+                    break
+
                 repaired_path = mod_dir / f"{module_path.stem}_test_repaired_{retries}.py"
                 write_text(repaired_path, repaired_text)
 

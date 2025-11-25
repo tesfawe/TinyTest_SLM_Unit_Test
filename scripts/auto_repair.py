@@ -3,8 +3,11 @@ import re
 from pathlib import Path
 from typing import Optional, Tuple
 
-from .test_generation import load_template, build_prompt, generate_with_ollama, clean_output
-
+# Adjust import path to find src
+import sys
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+from src.llm_providers import LLMProvider
+from scripts.test_generation import load_template
 
 def extract_failing_tests(test_code: str, pytest_log: str) -> str:
     """
@@ -96,6 +99,7 @@ def build_repair_prompt(
 
 
 def auto_repair(
+    provider: LLMProvider,
     model: str,
     module_path: Path,
     failing_test_path: Path,
@@ -113,7 +117,7 @@ def auto_repair(
         full_test_code=full_test_code,
         pytest_log=pytest_log,
     )
-    output, metadata = generate_with_ollama(model, prompt, seed=seed, temperature=temperature)
+    output, metadata = provider.generate(prompt, model, seed=seed, temperature=temperature)
     return output, metadata
 
 
