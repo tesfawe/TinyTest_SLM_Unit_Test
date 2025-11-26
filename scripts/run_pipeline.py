@@ -16,8 +16,11 @@ from .utils.logger import write_json
 from .utils.runner import run_pytest
 from .utils.tagging import tag_status_and_failure, parse_test_counts
 
-
+# Run with docstring:
 # python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-5 --max_retries 1 --temperature 0.3 --provider ollama
+
+#Run without docstring:
+# python -m scripts.run_pipeline --model llama3.2 --template few_shot --range 1-164 --max_retries 2 --temperature 0.3 --provider ollama --strip-docstrings
 
 
 
@@ -46,6 +49,7 @@ def main():
     parser.add_argument("--seed", type=int, default=None, help="Random seed for model generation")
     parser.add_argument("--temperature", type=float, default=None, help="Temperature for model generation")
     parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "gemini", "openai"], help="LLM provider to use")
+    parser.add_argument("--strip-docstrings", action="store_true", help="Remove docstrings from input code")
     args = parser.parse_args()
 
     modules_dir = Path(args.modules_dir)
@@ -90,7 +94,12 @@ def main():
         total_start_time = time.time()
 
         # 1) Generate tests (initial iteration)
-        prompt = build_prompt(module_path, Path("data/metadata") / f"{module_path.stem}.json", template=args.template)
+        prompt = build_prompt(
+            module_path, 
+            Path("data/metadata") / f"{module_path.stem}.json", 
+            template=args.template,
+            strip_docs=args.strip_docstrings
+        )
         
         try:
             generated_text, gen_metadata = provider.generate(prompt, args.model, seed=args.seed, temperature=args.temperature)

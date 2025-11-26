@@ -19,6 +19,7 @@ from typing import Tuple
 import sys
 sys.path.append(str(Path(__file__).resolve().parents[1]))
 from src.llm_providers import get_provider, LLMProvider
+from scripts.utils.code_mod import strip_docstrings
 
 def load_template(template_key: str) -> str:
     """Load a prompt template from the prompts/*.md files.
@@ -51,9 +52,16 @@ def load_template(template_key: str) -> str:
         raise ValueError(f"Expected string variable '{var_name}' in {file_path}")
     return value
 
-def build_prompt(module_path: Path, metadata_path: Path | None = None, template: str = "few_shot") -> str:
+def build_prompt(module_path: Path, metadata_path: Path | None = None, template: str = "few_shot", strip_docs: bool = False) -> str:
     """Construct the test-generation prompt from code and optional metadata."""
     code = module_path.read_text(encoding="utf-8")
+    
+    if strip_docs:
+        code = strip_docstrings(code)
+
+    # print(f"\n--- [DEBUG] Module Code ({module_path.name}) ---")
+    # print(code)
+    # print("----------------------------------------------\n")
     
     # Extract function name from code (simple heuristic)
     function_name = None
@@ -103,6 +111,7 @@ def main():
                        help="Prompt template style")
     parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "gemini", "openai"],
                        help="LLM provider to use")
+    parser.add_argument("--strip-docstrings", action="store_true", help="Remove docstrings from input code")
     
     args = parser.parse_args()
 
@@ -115,7 +124,8 @@ def main():
     prompt = build_prompt(
         module_path, 
         metadata_path if metadata_path.exists() else None,
-        template=args.template
+        template=args.template,
+        strip_docs=args.strip_docstrings
     )
     
     print(f"Generating tests for {module_path.name} using {args.model} via {args.provider}...")
