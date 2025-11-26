@@ -1,63 +1,106 @@
 import os
 import shutil
 import re
+import argparse
+import configparser
 
-TEST_DIR = "consolidated_tests/run_id_4"
-SOURCE_MODULES = "data/modules"
+## Usage: python build_mutation_workspace.py --tests path/to/tests/run_id_X --source-modules path/to/source/modules [--workspace mut_workspace]
 
-# The directory where mutation testing will be done
-WORKSPACE = "mut_workspace"
-WS_DATA = os.path.join(WORKSPACE, "data")
-WS_MODULES = os.path.join(WORKSPACE, "data", "modules")
-WS_TESTS = os.path.join(WORKSPACE, "tests", "run_id_4")
+def main():
+    parser = argparse.ArgumentParser(description="Prepare mutation testing workspace.")
+    parser.add_argument(
+        "--tests",
+        required=True,
+        help="Path to test directory (must contain folder name like run_id_X)"
+    )
+    parser.add_argument(
+        "--source-modules",
+        required=True,
+        help="Path to source modules directory"
+    )
+    parser.add_argument(
+        "--workspace",
+        default="mut_workspace",
+        help="Parent workspace directory (default: mut_workspace)"
+    )
 
-# Create workspace directory structure
-os.makedirs(WS_MODULES, exist_ok=True)
-os.makedirs(WS_TESTS, exist_ok=True)
+    args = parser.parse_args()
 
-pattern = re.compile(r"module_(\d+)_test\.py$")
+    TEST_DIR = args.tests
+    SOURCE_MODULES = args.source_modules
+    WORKSPACE = args.workspace
 
-copied_modules = set()
+    # Extract run_id from the last folder name
+    RUN_ID = os.path.basename(os.path.normpath(TEST_DIR))
 
-for filename in os.listdir(TEST_DIR):
-    match = pattern.match(filename)
-    if not match:
-        continue
+    # Create a run-specific workspace
+    RUN_WORKSPACE = os.path.join(WORKSPACE, RUN_ID)
+    WS_DATA = os.path.join(RUN_WORKSPACE, "data")
+    WS_MODULES = os.path.join(WS_DATA, "modules")
+    WS_TESTS = os.path.join(RUN_WORKSPACE, "tests", RUN_ID)
 
-    test_number = match.group(1)
-    module_filename = f"module_{test_number}.py"
+    # Create directories
+    os.makedirs(WS_MODULES, exist_ok=True)
+    os.makedirs(WS_TESTS, exist_ok=True)
 
-    src_module_path = os.path.join(SOURCE_MODULES, module_filename)
-    dst_module_path = os.path.join(WS_MODULES, module_filename)
+    pattern = re.compile(r"module_(\d+)_test\.py$")
+    copied_modules = set()
 
-    if os.path.isfile(src_module_path):
-        print(f"Copying module → {dst_module_path}")
-        shutil.copy2(src_module_path, dst_module_path)
-        copied_modules.add(module_filename)
-    else:
-        print(f"Module not found: {module_filename}")
+    # Copy modules and tests
+    for filename in os.listdir(TEST_DIR):
+        match = pattern.match(filename)
+        if not match:
+            continue
 
-    # Copy test file too
-    src_test_path = os.path.join(TEST_DIR, filename)
-    dst_test_path = os.path.join(WS_TESTS, filename)
+        test_number = match.group(1)
+        module_filename = f"module_{test_number}.py"
 
-    print(f"Copying test → {dst_test_path}")
-    shutil.copy2(src_test_path, dst_test_path)
+        src_module_path = os.path.join(SOURCE_MODULES, module_filename)
+        dst_module_path = os.path.join(WS_MODULES, module_filename)
 
-# Create __init__.py files so imports work
-open(os.path.join(WORKSPACE, "__init__.py"), "w").close()
-open(os.path.join(WS_DATA, "__init__.py"), "w").close()
-open(os.path.join(WS_MODULES, "__init__.py"), "w").close()
-os.makedirs(os.path.join(WORKSPACE, "tests"), exist_ok=True)
-open(os.path.join(WORKSPACE, "tests", "__init__.py"), "w").close()
-open(os.path.join(WS_TESTS, "__init__.py"), "w").close()
+        if os.path.isfile(src_module_path):
+            print(f"Copying module → {dst_module_path}")
+            shutil.copy2(src_module_path, dst_module_path)
+            copied_modules.add(module_filename)
+        else:
+            print(f"Module not found: {module_filename}")
 
-print("\n Workspace created successfully!")
-print("Mutate these modules:")
-for m in sorted(copied_modules):
-    print("   -", m)
+        # Copy test file
+        src_test_path = os.path.join(TEST_DIR, filename)
+        dst_test_path = os.path.join(WS_TESTS, filename)
+        print(f"Copying test → {dst_test_path}")
+        shutil.copy2(src_test_path, dst_test_path)
 
-print("\n Run mutation testing inside mut_workspace/")
-print("Example:")
-print("    cd mut_workspace")
-print("    mutmut run --paths-to-mutate data/modules")
+    # Create __init__.py files
+    for path in [RUN_WORKSPACE, WS_DATA, WS_MODULES, WS_TESTS]:
+        init_file = os.path.join(path, "__init__.py")
+        os.makedirs(path, exist_ok=True)
+        open(init_file, "w").close()
+
+    print("\nWorkspace created successfully!")
+    print(f"Run-specific workspace: {RUN_WORKSPACE}")
+    print("Mutate these modules:")
+    for m in sorted(copied_modules):
+        print("   -", m)
+
+    print("\nRun mutation testing inside this workspace:")
+    print(f"    cd {RUN_WORKSPACE}")
+    print("    mutmut run")
+
+    # Generate run-specific setup.cfg
+    setup_cfg_path = os.path.join(RUN_WORKSPACE, "setup.cfg")
+    config = configparser.ConfigParser()
+    config["mutmut"] = {
+        "paths_to_mutate": f"{SOURCE_MODULES}/",
+        "runner": f"python -m pytest tests/{RUN_ID}/ --tb=short"
+    }
+    with open(setup_cfg_path, "w") as f:
+        config.write(f)
+
+    print(f"\nCreated {setup_cfg_path} with:")
+    print(f"  paths_to_mutate = {SOURCE_MODULES}/")
+    print(f"  runner = python -m pytest tests/{RUN_ID}/ --tb=short")
+
+
+if __name__ == "__main__":
+    main()

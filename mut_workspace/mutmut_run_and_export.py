@@ -1,48 +1,93 @@
+import os
 import subprocess
 import json
 import re
 from collections import defaultdict
+import argparse
 
-OUTPUT_JSON_FILE = "mutmut_results.json"
+
+## Usage: python mutmut_run_and_export.py --all 
+##        python mutmut_run_and_export.py --runs run_id_4 run_id_5
 
 
-# Run mutation testing
-print("Running mutation testing with Mutmut...")
-try:
-    subprocess.run(["mutmut", "run"], check=True)
-except subprocess.CalledProcessError as e:
-    print("Error running mutmut:", e)
-    exit(1)
+def run_mutmut(run_workspace):
+    """
+    Run mutmut inside a given workspace and save JSON results in the same folder.
+    """
+    print(f"\nRunning mutmut in {run_workspace}...")
 
-# Capture results
-print("Fetching mutation results...")
-try:
+    # Run mutation testing
+    subprocess.run(["mutmut", "run"], cwd=run_workspace, check=True)
+
+    # Fetch results
     result = subprocess.run(
-        ["mutmut", "results"], capture_output=True, text=True, check=True
+        ["mutmut", "results"],
+        cwd=run_workspace,
+        capture_output=True,
+        text=True,
+        check=True
     )
     lines = result.stdout.splitlines()
-except subprocess.CalledProcessError as e:
-    print("Error fetching mutmut results:", e)
-    exit(1)
 
-# Parse results
-mutants = []
-pattern = re.compile(
-    r"(?P<module>[\w\.]+)\.(?P<function>\w+)__mutmut_(?P<id>\d+): (?P<status>\w+)"
-)
+    # Parse results
+    mutants = []
+    pattern = re.compile(
+        r"(?P<module>[\w\.]+)\.(?P<function>\w+)__mutmut_(?P<id>\d+): (?P<status>\w+)"
+    )
 
-for line in lines:
-    match = pattern.match(line.strip())
-    if match:
-        m = match.groupdict()
-        m["id"] = int(m["id"])
-        m["status"] = m["status"].lower()  # killed / survived / timeout
-        mutants.append(m)
+    for line in lines:
+        match = pattern.match(line.strip())
+        if match:
+            m = match.groupdict()
+            m["id"] = int(m["id"])
+            m["status"] = m["status"].lower()
+            mutants.append(m)
 
-# Save full mutant details to JSON
-with open(OUTPUT_JSON_FILE, "w") as f:
-    json.dump(mutants, f, indent=2)
-print(f"Saved detailed mutants to {OUTPUT_JSON_FILE}")
+    # Save JSON inside the run workspace
+    output_file = os.path.join(run_workspace, "mutmut_results.json")
+    with open(output_file, "w") as f:
+        json.dump(mutants, f, indent=2)
+
+    print(f"Saved mutmut_results.json in {run_workspace}")
 
 
-print("Mutation testing and JSON export complete!")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Run mutmut on selected run folders.")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument(
+        "--all",
+        action="store_true",
+        help="Run mutmut on all run folders"
+    )
+    group.add_argument(
+        "--runs",
+        nargs="+",
+        help="Run mutmut only on specified run folders (e.g., run_id_4 run_id_5)"
+    )
+
+    args = parser.parse_args()
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    # Determine which runs to execute
+    if args.all:
+        run_folders = [
+            os.path.join(BASE_DIR, entry)
+            for entry in os.listdir(BASE_DIR)
+            if os.path.isdir(os.path.join(BASE_DIR, entry)) and entry.startswith("run_id_")
+        ]
+    else:
+        # Only use specified run folders
+        run_folders = [
+            os.path.join(BASE_DIR, run_id)
+            for run_id in args.runs
+            if os.path.isdir(os.path.join(BASE_DIR, run_id))
+        ]
+
+    if not run_folders:
+        print("No valid run folders found. Exiting.")
+        exit(1)
+
+    # Run mutmut for each selected folder
+    for folder in run_folders:
+        run_mutmut(folder)
