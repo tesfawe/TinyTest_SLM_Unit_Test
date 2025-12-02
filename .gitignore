@@ -12,6 +12,5 @@ old_runs/
 *.pyc
 .env
 venv/
-
-
+old*/
 
