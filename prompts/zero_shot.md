@@ -1,4 +1,4 @@
-ZERO_SHOT_TEMPLATE_v1 = """You are a Python testing expert. Write pytest unit tests for the following function. Only test the logic that exists, do not invent new behavior or validation that the function does not perform.
+ZERO_SHOT_TEMPLATE_v1 = """You are a Python testing expert. Write pytest unit tests for the function shown below. Test only the behavior that is explicitly implemented in the function code. Do not invent or assume any extra validation, behavior, or error handling like TypeError, ValueError.
 
 FUNCTION:
 {code}
