@@ -2,10 +2,11 @@
 """
 consolidate_tests.py
 
-This script consolidates test files from passed modules into a single test file per module.
-For modules with multiple test files (raw + repaired), it merges them by:
-- Keeping the latest version of common test functions
-- Keeping all unique test functions
+This script consolidates test files from modules into a single test file per module.
+It collects passed tests from all attempts (raw + repaired), even if the module ultimately failed.
+For modules with multiple test files, it merges them by:
+- Keeping the latest version of common test functions (if passed)
+- Keeping all unique test functions (if passed)
 - Combining imports
 
 Usage:
@@ -15,8 +16,9 @@ Usage:
 import argparse
 import ast
 import json
+import re
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Set, Tuple
 
 
 def extract_test_functions(file_path: Path) -> Tuple[List[ast.Import | ast.ImportFrom], Dict[str, ast.FunctionDef], List[str]]:
@@ -102,27 +104,92 @@ def unparse_import(import_node: ast.Import | ast.ImportFrom, source_lines: List[
     return ""
 
 
-def consolidate_test_files(test_files: List[Path]) -> str:
+def parse_pytest_log(log_path: Path) -> Set[str]:
     """
-    Consolidate multiple test files into a single test file.
-    For common test functions, keeps the version from the latest file.
-    For unique test functions, keeps them all.
+    Parse pytest log to identify failed tests.
+    Returns a set of failed test function names.
     """
+    failed_tests = set()
+    if not log_path.exists():
+        return failed_tests
+
+    try:
+        content = log_path.read_text(encoding="utf-8")
+        # Look for lines like "FAILED path/to/test.py::test_function_name"
+        # or "FAILED path/to/test.py::test_function_name - AssertionError..."
+        # Regex to capture the function name after ::
+        matches = re.findall(r"::(test_\w+)", content)
+        failed_tests.update(matches)
+        
+        # Also check for "FAILED" lines in the short summary info at the bottom
+        # FAILED runs/.../test.py::test_function_name
+        summary_matches = re.findall(r"FAILED .+?::(test_\w+)", content)
+        failed_tests.update(summary_matches)
+        
+    except Exception as e:
+        print(f"Warning: Failed to parse log {log_path}: {e}")
+    
+    return failed_tests
+
+
+def process_module(module_dir: Path, output_dir: Path, module_id: str = None) -> bool:
+    """
+    Process a single module directory.
+    Returns True if a consolidated test file was created, False otherwise.
+    """
+    if module_id is None:
+        module_id = module_dir.name
+    
+    # Collect all test files and their corresponding logs
+    test_files_info = [] # List of (test_file_path, log_file_path)
+    
+    # Check raw test
+    test_raw = module_dir / f"{module_id}_test_raw.py"
+    log_raw = module_dir / "pytest_log.txt"
+    if test_raw.exists():
+        test_files_info.append((test_raw, log_raw))
+    
+    # Check repaired tests
+    repair_num = 1
+    while True:
+        test_repaired = module_dir / f"{module_id}_test_repaired_{repair_num}.py"
+        log_repaired = module_dir / f"pytest_log_retry_{repair_num}.txt"
+        if test_repaired.exists():
+            test_files_info.append((test_repaired, log_repaired))
+            repair_num += 1
+        else:
+            break
+    
+    if not test_files_info:
+        # print(f"Warning: No test files found in {module_dir}")
+        return False
+
     all_imports: List[Tuple[ast.Import | ast.ImportFrom, List[str]]] = []
     all_test_functions: Dict[str, Tuple[ast.FunctionDef, List[str]]] = {}
     
-    for test_file in test_files:
+    has_passed_tests = False
+
+    for test_file, log_file in test_files_info:
         imports, test_functions, source_lines = extract_test_functions(test_file)
+        failed_tests = parse_pytest_log(log_file)
         
+        # Collect imports
         for imp in imports:
             imp_str = unparse_import(imp, source_lines)
             if not any(unparse_import(existing_imp, existing_lines) == imp_str 
                       for existing_imp, existing_lines in all_imports):
                 all_imports.append((imp, source_lines))
         
+        # Collect passed test functions
         for func_name, func_node in test_functions.items():
-            all_test_functions[func_name] = (func_node, source_lines)
+            if func_name not in failed_tests:
+                all_test_functions[func_name] = (func_node, source_lines)
+                has_passed_tests = True
     
+    if not has_passed_tests:
+        return False
+
+    # Generate consolidated content
     lines = []
     
     import_strs = []
@@ -143,70 +210,18 @@ def consolidate_test_files(test_files: List[Path]) -> str:
         lines.append(func_code)
         lines.append("")
     
-    return "\n".join(lines).strip() + "\n"
-
-
-def process_module(module_dir: Path, output_dir: Path, module_id: str = None) -> bool:
-    """
-    Process a single module directory.
-    Returns True if a consolidated test file was created, False otherwise.
-    """
-    if module_id is None:
-        module_id = module_dir.name
-    
-    metadata_file = module_dir / "metadata.json"
-    
-    if not metadata_file.exists():
-        print(f"Warning: metadata.json not found in {module_dir}")
-        return False
-    
-    try:
-        with open(metadata_file, "r", encoding="utf-8") as f:
-            metadata = json.load(f)
-    except Exception as e:
-        print(f"Warning: Failed to load metadata from {metadata_file}: {e}")
-        return False
-    
-    if metadata.get("final_status") != "passed":
-        return False
-    
-    if "module_id" in metadata:
-        module_id = metadata["module_id"]
-    
-    test_files = []
-    
-    test_raw = module_dir / f"{module_id}_test_raw.py"
-    if test_raw.exists():
-        test_files.append(test_raw)
-    
-    repair_num = 1
-    while True:
-        test_repaired = module_dir / f"{module_id}_test_repaired_{repair_num}.py"
-        if test_repaired.exists():
-            test_files.append(test_repaired)
-            repair_num += 1
-        else:
-            break
-    
-    if not test_files:
-        print(f"Warning: No test files found in {module_dir}")
-        return False
-    
-    if len(test_files) == 1:
-        consolidated_content = test_files[0].read_text(encoding="utf-8")
-    else:
-        consolidated_content = consolidate_test_files(test_files)
+    consolidated_content = "\n".join(lines).strip() + "\n"
     
     output_file = output_dir / f"{module_id}_test.py"
     output_file.write_text(consolidated_content, encoding="utf-8")
     
-    print(f"Created consolidated test file: {output_file} ({len(test_files)} file(s))")
+    # print(f"Created consolidated test file: {output_file} (from {len(test_files_info)} attempt(s))")
     return True
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Consolidate test files from passed modules into a single test file per module"
+        description="Consolidate test files from modules into a single test file per module"
     )
     parser.add_argument(
         "--summary-file",
@@ -251,10 +266,11 @@ def main():
     run_id = args.run_id
     output_base = Path(args.output_dir)
     
-    passed_modules = [m for m in modules if m.get("final_status") == "passed" and m.get("path")]
+    # Process ALL modules that have a path, regardless of status
+    target_modules = [m for m in modules if m.get("path")]
     
-    if not passed_modules:
-        print("Warning: No passed modules found in summary file")
+    if not target_modules:
+        print("Warning: No modules with paths found in summary file")
         return 1
     
     output_dir = output_base / run_id
@@ -264,14 +280,14 @@ def main():
     if not init_file.exists():
         init_file.write_text("", encoding="utf-8")
     
-    print(f"Processing {len(passed_modules)} passed module(s) for run_id: {run_id}")
+    print(f"Processing {len(target_modules)} modules for run_id: {run_id}")
     print(f"Output directory: {output_dir}")
     print()
     
     total_consolidated = 0
     processed_modules = set()
     
-    for module in passed_modules:
+    for module in target_modules:
         module_id = module.get("module_id")
         path = module.get("path", "")
         
@@ -290,12 +306,13 @@ def main():
             continue
         
         if not module_dir.exists():
-            print(f"Warning: Module directory not found: {module_dir}")
+            # print(f"Warning: Module directory not found: {module_dir}")
             continue
         
         if process_module(module_dir, output_dir, module_id):
             total_consolidated += 1
             processed_modules.add(module_id)
+            # print(f"Consolidated {module_id}")
     
     print()
     print(f"Total consolidated: {total_consolidated} test file(s)")
