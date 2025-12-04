@@ -308,6 +308,18 @@ def main():
         if not module_dir.exists():
             # print(f"Warning: Module directory not found: {module_dir}")
             continue
+
+        metadata_file = module_dir / "metadata.json"
+        if metadata_file.exists():
+            try:
+                with open(metadata_file, 'r', encoding='utf-8') as f:
+                    metadata = json.load(f)
+                if metadata.get("final_status") == "ran":
+                    # Skip modules with final_status="ran"
+                    continue
+            except Exception as e:
+                # If we can't read metadata, continue processing (don't skip)
+                pass
         
         if process_module(module_dir, output_dir, module_id):
             total_consolidated += 1
