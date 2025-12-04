@@ -1,4 +1,4 @@
-FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function. Only test the logic that exists, do not invent new behavior or validation that the function does not perform.
+FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function. Only test the logic that exists, do not invent or assume any extra validation, behavior, or error handling like TypeError, ValueError.
 
 EXAMPLE 1:
 Function to test:
