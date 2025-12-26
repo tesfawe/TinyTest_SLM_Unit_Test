@@ -28,3 +28,8 @@ uc-micro-py==1.0.3
 google-genai
 openai
 python-dotenv
+pandas
+numpy
+matplotlib
+seaborn
+scipy

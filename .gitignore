@@ -13,4 +13,9 @@ old_runs/
 .env
 venv/
 old*/
-
+coverage*/
+plots/  
+statistics/
+tables/
+mutmut_plots/
+results*/
