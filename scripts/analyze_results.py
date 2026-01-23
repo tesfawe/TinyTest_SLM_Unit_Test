@@ -10,7 +10,7 @@ from pathlib import Path
 from collections import defaultdict
 from typing import Dict, List
 
-# python scripts/analyze_results.py --runs-dir old_runs/run_id_3 --output run_id_3_results_summary.json
+# python scripts/analyze_results.py --runs-dir all_runs/run_id_3 --output run_id_3_results_summary.json
 
 def analyze_runs(runs_dir: Path = Path("runs")) -> Dict:
     """Analyze all metadata.json files in runs directory."""

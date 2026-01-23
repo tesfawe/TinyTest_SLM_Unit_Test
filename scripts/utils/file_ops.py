@@ -7,9 +7,12 @@ def ensure_dir(path: Path) -> Path:
     return path
 
 
-def make_run_root(model_name: str, template_name: str, base_dir: Path | None = None) -> Path:
-    if base_dir is None:
-        base_dir = Path("runs")
+def make_run_root(model_name: str, template_name: str, output_dir: Path | None = None) -> Path:
+    
+    if output_dir is None:
+        base_dir = Path("all_runs/run_id_00")
+    else:
+        base_dir = output_dir
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     run_dir = base_dir / f"{timestamp}_{model_name}_{template_name}"
     ensure_dir(run_dir)

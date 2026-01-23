@@ -235,8 +235,8 @@ def main():
     )
     parser.add_argument(
         "--base-dir",
-        default="old_runs",
-        help="Base directory containing run directories (default: old_runs)"
+        default="all_runs",
+        help="Base directory containing run directories (default: all_runs)"
     )
     parser.add_argument(
         "--output-dir",

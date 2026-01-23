@@ -50,6 +50,7 @@ def main():
     parser.add_argument("--temperature", type=float, default=None, help="Temperature for model generation")
     parser.add_argument("--provider", type=str, default="ollama", choices=["ollama", "gemini", "openai"], help="LLM provider to use")
     parser.add_argument("--strip-docstrings", action="store_true", help="Remove docstrings from input code")
+    parser.add_argument("--output-dir", default=None, help="Custom output directory (overrides default timestamped folder)")
     args = parser.parse_args()
 
     modules_dir = Path(args.modules_dir)
@@ -67,7 +68,7 @@ def main():
         except Exception:
             raise ValueError("--range must be like '1-20' (start-end)")
 
-    run_root = make_run_root(args.model, args.template)
+    run_root = make_run_root(args.model, args.template, output_dir=Path(args.output_dir) if args.output_dir else None)
     
     # Initialize provider
     try:
@@ -148,7 +149,7 @@ def main():
         final_failure_type = failure_type
 
         # 3) Auto-repair attempts
-        if status not in ("compiled", "passed") and failure_type != "syntax":  # Only repair if it ran but failed (not syntax errors)
+        if status not in ("compiled", "passed"): 
             retries = 0
             cur_test_path = test_file_raw
             cur_log = log_raw
