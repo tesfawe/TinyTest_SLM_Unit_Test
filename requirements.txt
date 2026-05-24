@@ -33,3 +33,4 @@ numpy
 matplotlib
 seaborn
 scipy
+pynguin
