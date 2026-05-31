@@ -1,34 +1,29 @@
-def get_allen_relation(duration1, duration2):
+import re
 
-    is1, ie1 = duration1
-    is2, ie2 = duration2
+def calc_query_pos_from_cigar(cigar, strand):
 
-    if is2-1 == ie1:
-        return 'meets'
-    elif is1-1 == ie2:
-        return 'metby'
+    cigar_ops = [[int(op[0]), op[1]] for op in re.findall('(\d+)([A-Za-z])', cigar)]
 
-    elif is1 == is2 and ie1 == ie2:
-        return 'equal'
+    order_ops = cigar_ops
+    if not strand: 
+        order_ops = order_ops[::-1]
 
-    elif is2 > ie1:
-        return 'before'
-    elif is1 > ie2:
-        return 'after'
+    qs_pos = 0
+    qe_pos = 0
+    q_len = 0
 
-    elif ie1 >= is2 and ie1 <= ie2 and is1 <= is2:
-        return 'overlaps'
-    elif ie2 >= is1 and ie2 <= ie1 and is2 <= is1:
-        return 'overlapped_by'
-    elif is1 >= is2 and ie1 <= ie2:
-        return 'during'
-    elif is1 <= is2 and ie1 >= ie2:
-        return 'contains'
-    elif is1 == is2 and ie1 < ie2:
-        return 'starts'
-    elif is1 == is2 and ie1 > ie2:
-        return 'started_by'
-    elif ie1 == ie2 and is2 < is1:
-        return 'finishes'
-    elif ie1 == ie2 and is2 > is1:
-        return 'finished_by'
+    for op_position in range(len(cigar_ops)):
+        op_len = cigar_ops[op_position][0]
+        op_type = cigar_ops[op_position][1]
+
+        if op_position == 0 and ( op_type == 'H' or op_type == 'S' ):
+            qs_pos += op_len
+            qe_pos += op_len
+            q_len += op_len
+        elif op_type == 'H' or op_type == 'S':
+            q_len += op_len
+        elif op_type == 'M' or op_type == 'I' or op_type == 'X':
+            qe_pos += op_len
+            q_len += op_len
+
+    return qs_pos, qe_pos

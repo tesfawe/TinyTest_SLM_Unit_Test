@@ -1,27 +1,18 @@
-def longestNonWildcardSubsequence(opCodes, mask=None):
-    # Invalid values for start and end
-    start = 1
-    end = 0
-    if not mask:
-        mask = "1"*len(opCodes[0])
-    for x in range(len(mask)):
-        for y in range(x, len(mask)):
-            rangeGood = True
-            for op in opCodes:
-                for i in range(x, y+1):
-                    if op[i] == "*" or mask[i] == "*":
-                        rangeGood = False
-                        break
-                if not rangeGood:
-                    break
-            if rangeGood:
-                if y-x > end-start:
-                    end = y
-                    start = x
+def featurize_finance(investment, average_money):
+	newVec = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-    mask = [ c for c in mask ]
+	if investment == 0: money = average_money
+	else: money = investment
 
-    for i in range(start, end+1):
-        mask[i] = "*"
+	if   money < 1*10**5: newVec[0]=1
+	elif money < 5*10**5: newVec[1]=1
+	elif money < 1*10**6: newVec[2]=1
+	elif money < 5*10**6: newVec[3]=1
+	elif money < 1*10**7: newVec[4]=1
+	elif money < 5*10**7: newVec[5]=1
+	elif money < 1*10**8: newVec[6]=1
+	elif money < 5*10**8: newVec[7]=1
+	elif money < 1*10**9: newVec[8]=1
+	else: newVec[9]=1
 
-    return start, end, ''.join(mask)
+	return newVec

@@ -1,27 +1,34 @@
-def _remove_strings(code):
-    removed_string = ""
-    is_string_now = None
+def get_allen_relation(duration1, duration2):
 
-    for i in range(0, len(code)-1):
-        append_this_turn = False
+    is1, ie1 = duration1
+    is2, ie2 = duration2
 
-        if code[i] == "'" and (i == 0 or code[i-1] != '\\'):
-            if is_string_now == "'":
-                is_string_now = None
+    if is2-1 == ie1:
+        return 'meets'
+    elif is1-1 == ie2:
+        return 'metby'
 
-            elif is_string_now is None:
-                is_string_now = "'"
-                append_this_turn = True
+    elif is1 == is2 and ie1 == ie2:
+        return 'equal'
 
-        elif code[i] == '"' and (i == 0 or code[i-1] != '\\'):
-            if is_string_now == '"':
-                is_string_now = None
+    elif is2 > ie1:
+        return 'before'
+    elif is1 > ie2:
+        return 'after'
 
-            elif is_string_now is None:
-                is_string_now = '"'
-                append_this_turn = True
-
-        if is_string_now is None or append_this_turn:
-            removed_string += code[i]
-
-    return removed_string
+    elif ie1 >= is2 and ie1 <= ie2 and is1 <= is2:
+        return 'overlaps'
+    elif ie2 >= is1 and ie2 <= ie1 and is2 <= is1:
+        return 'overlapped_by'
+    elif is1 >= is2 and ie1 <= ie2:
+        return 'during'
+    elif is1 <= is2 and ie1 >= ie2:
+        return 'contains'
+    elif is1 == is2 and ie1 < ie2:
+        return 'starts'
+    elif is1 == is2 and ie1 > ie2:
+        return 'started_by'
+    elif ie1 == ie2 and is2 < is1:
+        return 'finishes'
+    elif ie1 == ie2 and is2 > is1:
+        return 'finished_by'

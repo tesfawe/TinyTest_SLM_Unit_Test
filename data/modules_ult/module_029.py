@@ -1,45 +1,22 @@
-def time_in_swiss_german(hour: int, minute: int) -> str:
-    if hour < 6:
-        period_of_day = "znacht"
-    elif 6 <= hour < 12:
-        period_of_day = "am morge"
-    elif hour == 12:
-        period_of_day = "am mittag"
-    elif hour < 18:
-        period_of_day = "am namittag"
-    elif hour < 22:
-        period_of_day = "am abig"
-    else:
-        period_of_day = "znacht"
+def formatTime(time_diff: int):
+    if time_diff < 0:  
+        return "ERROR: Negative timeDiff"
 
-    if hour == 0:
-        clock_hour = 12
-    elif hour > 12:
-        clock_hour = hour - 12
-    else:
-        clock_hour = hour
-    hour_suffix = "i" if clock_hour > 3 else ""
+    response = ["", "0 hours", "0 minutes", "0 seconds"]
+    m, s = divmod(time_diff, 60)
+    h, m = divmod(m, 60)
+    d, h = divmod(h, 24)
 
-    if minute == 0:
-        return f"{clock_hour}{hour_suffix} {period_of_day}"
+    if d == 1: response[0] = "1 day"
+    elif d > 1: response[0] = "{} days".format(d)
 
-    stated_hour = clock_hour if minute < 25 else clock_hour + 1
+    if h == 1: response[1] = "1 hour"
+    elif h > 1: response[1] = "{} hours".format(h)
 
-    if minute == 15:
-        minute_part = "viertel ab"
-    elif minute == 30:
-        minute_part = "halbi"
-    elif minute == 45:
-        minute_part = "viertel vor"
-    elif minute < 25:
-        minute_part = f"{minute} ab"
-    elif 25 <= minute < 30:
-        minute_part = f"{30 - minute} vor halbi"
-    elif 30 < minute <= 39:
-        minute_part = f"{minute - 30} ab halbi"
-    else:
-        minute_part = f"{60 - minute} vor"
+    if m == 1: response[2] = "1 minute"
+    elif m > 1: response[2] = "{} minutes".format(m)
 
-    result = f"{minute_part} {stated_hour}{hour_suffix} {period_of_day}"
+    if s == 1: response[3] = "1 second"
+    elif s > 1: response[3] = "{} seconds".format(s)
 
-    return result
+    return response

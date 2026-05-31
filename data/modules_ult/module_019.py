@@ -7,8 +7,6 @@ def decode_address_entry(string, sort=False):
         print("Error in string ", string)
         return []
 
-    # do everything backwards
-    # asics
     asics = []
     if sec_len == 3 and len(sections[2]) > 0:
         _asics = sections[2].split(",")
@@ -16,7 +14,6 @@ def decode_address_entry(string, sort=False):
     else:
         asics = [0, 1]
 
-    # asics
     cables = []
     if sec_len >= 2 and len(sections[1]) > 0:
         _cables = sections[1].split(",")
@@ -24,7 +21,6 @@ def decode_address_entry(string, sort=False):
     else:
         cables = [0, 1, 2]
 
-    # check address
     address = sections[0]
     if len(address) == 6:
         if address[0:2] != "0x":

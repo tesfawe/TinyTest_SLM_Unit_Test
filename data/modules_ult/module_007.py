@@ -1,28 +1,33 @@
-def deg2HMS(ra=None, dec=None, round=False):
-    RA, DEC, rs, ds = '', '', '', ''
-    if dec is not None:
-        if str(dec)[0] == '-':
-            ds, dec = '-', abs(dec)
-        deg = int(dec)
-        decM = abs(int((dec-deg)*60))
-        if round:
-            decS = int((abs((dec-deg)*60)-decM)*60)
-        else:
-            decS = (abs((dec-deg)*60)-decM)*60
-        DEC = '{0}{1} {2} {3}'.format(ds, deg, decM, decS)
+def uoc_railfence_encrypt(message, key):
 
-    if ra is not None:
-        if str(ra)[0] == '-':
-            rs, ra = '-', abs(ra)
-        raH = int(ra/15)
-        raM = int(((ra/15)-raH)*60)
-        if round:
-            raS = int(((((ra/15)-raH)*60)-raM)*60)
-        else:
-            raS = ((((ra/15)-raH)*60)-raM)*60
-        RA = '{0}{1} {2} {3}'.format(rs, raH, raM, raS)
+    ciphertext = ''
 
-    if ra is not None and dec is not None:
-        return (RA, DEC)
-    else:
-        return RA or DEC
+    rows = key[0]
+    holes = key[1]
+    
+    cols = len(message)+len(holes)
+    
+    mat = [[0 for x in range(cols)] for y in range(rows)]
+
+    j = 0
+    i = 0
+    m = 0
+    while j < cols and m < len(message):
+        pos = (i,j)
+        if pos not in holes:
+            mat[pos[0]][pos[1]] = message[m]
+            m += 1
+        if i==0:
+            k = 1
+        elif i==(rows-1):
+            k = -1
+        j += 1
+        i += k
+
+    for i in range(rows):
+        for j in range(cols):
+            elem = mat[i][j]
+            if elem!=0:
+                ciphertext=ciphertext+elem
+
+    return ciphertext

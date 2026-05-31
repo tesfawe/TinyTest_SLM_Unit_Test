@@ -1,27 +1,27 @@
-import re
+def _remove_strings(code):
+    removed_string = ""
+    is_string_now = None
 
-def fix_labels(header):
+    for i in range(0, len(code)-1):
+        append_this_turn = False
 
-    for i, label in enumerate(header):
-        if re.search("Unix", label):
-            header[i] = "Timestamp"
-        if (re.search("Accel", label) and re.search("X", label)):
-            header[i] = "Accel_X"
-        if (re.search("Accel", label) and re.search("Y", label)):
-            header[i] = "Accel_Y"
-        if (re.search("Accel", label) and re.search("Z", label)):
-            header[i] = "Accel_Z"
-        if (re.search("Gyro", label) and re.search("X", label)):
-            header[i] = "Gyro_X"
-        if (re.search("Gyro", label) and re.search("Y", label)):
-            header[i] = "Gyro_Y"
-        if (re.search("Gyro", label) and re.search("Z", label)):
-            header[i] = "Gyro_Z"
-        if re.search("Pressure", label):
-            header[i] = "Pressure"
-        if re.search("Temp", label):
-            header[i] = "Temperature"
-        if re.search("GSR", label):
-            header[i] = "GSR"
+        if code[i] == "'" and (i == 0 or code[i-1] != '\\'):
+            if is_string_now == "'":
+                is_string_now = None
 
-    return header
+            elif is_string_now is None:
+                is_string_now = "'"
+                append_this_turn = True
+
+        elif code[i] == '"' and (i == 0 or code[i-1] != '\\'):
+            if is_string_now == '"':
+                is_string_now = None
+
+            elif is_string_now is None:
+                is_string_now = '"'
+                append_this_turn = True
+
+        if is_string_now is None or append_this_turn:
+            removed_string += code[i]
+
+    return removed_string

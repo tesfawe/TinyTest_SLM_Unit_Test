@@ -1,29 +1,23 @@
-import re
+def _normalized_vcf(chr, pos, ref, alt):
+    for i in range(max(len(ref), len(alt))):
+        _ref = ref[i] if i < len(ref) else None
+        _alt = alt[i] if i < len(alt) else None
+        if _ref is None or _alt is None or _ref != _alt:
+            break
 
-def calc_query_pos_from_cigar(cigar, strand):
+    if _ref is None and _alt is None:
+        raise ValueError('"ref" and "alt" cannot be the same: {}'.format(
+            (chr, pos, ref, alt)
+        ))
 
-    cigar_ops = [[int(op[0]), op[1]] for op in re.findall('(\d+)([A-Za-z])', cigar)]
+    _pos = int(pos)
+    if _ref is None or _alt is None:
+        _pos = _pos + i - 1
+        _ref = ref[i - 1:]
+        _alt = alt[i - 1:]
+    else:
+        _pos = _pos + i
+        _ref = ref[i:]
+        _alt = alt[i:]
 
-    order_ops = cigar_ops
-    if not strand: # - strand
-        order_ops = order_ops[::-1]
-
-    qs_pos = 0
-    qe_pos = 0
-    q_len = 0
-
-    for op_position in range(len(cigar_ops)):
-        op_len = cigar_ops[op_position][0]
-        op_type = cigar_ops[op_position][1]
-
-        if op_position == 0 and ( op_type == 'H' or op_type == 'S' ):
-            qs_pos += op_len
-            qe_pos += op_len
-            q_len += op_len
-        elif op_type == 'H' or op_type == 'S':
-            q_len += op_len
-        elif op_type == 'M' or op_type == 'I' or op_type == 'X':
-            qe_pos += op_len
-            q_len += op_len
-
-    return qs_pos, qe_pos
+    return chr, _pos, _ref, _alt
