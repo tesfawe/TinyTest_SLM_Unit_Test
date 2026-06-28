@@ -33,4 +33,4 @@ numpy
 matplotlib
 seaborn
 scipy
-pynguin
+pynguin==0.45.0

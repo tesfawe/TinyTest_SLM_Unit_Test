@@ -1,5 +1,7 @@
 AUTO_REPAIR_TEMPLATE_v1 = """Fix only the failing test functions in the given pytest file, based on the error logs. Newly generate file should contain newly fixed and prevously correct ones. 
 
+**Must Follow**: Write Maximum 2-3 assertion logic per test functions. Only fix the failed tests, no new generation.
+
 Module name: {module_name}
 Function name: {function_name}
 

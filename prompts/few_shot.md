@@ -1,4 +1,6 @@
-FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function. Only test the logic that exists, do not invent or assume any extra validation, behavior, or error handling like TypeError, ValueError.
+FEW_SHOT_TEMPLATE_v1 = """Generate pytest unit tests for the given function. Only test the logic that exists, do not invent or assume any extra validation, behavior, or error handling like TypeError, ValueError. 
+
+**Must Follow**: Write maximum 6 test functions and 2-3 assertion logic with with names like: test_description_of_what_is_tested
 
 EXAMPLE 1:
 Function to test:
@@ -64,12 +66,8 @@ CRITICAL RULES:
 1. Start immediately with: from data.modules.{module_name} import {function_name}
 2. Do not redefine the function.
 3. Output only Python code — no markdown, explanations, or comments.
-4. Write exactly 4 or 5 test functions with names like test_description_of_what_is_tested.
-5. Each test must use assert statements.
-6. Before writing, understand what the function actually supports.
-   - Generate tests only for valid and supported inputs based on the function’s logic or docstring.
-   - Skip invalid, undefined, or unhandled cases (e.g., empty inputs, None, wrong types).
-7. Cover normal use cases, small edge cases, and boundary values within valid input ranges.
+4. Each test must use assert statements.
+5. Cover normal use cases, small edge cases, and boundary values within valid input ranges.
 
 OUTPUT ONLY VALID PYTHON CODE BELOW:
 """
