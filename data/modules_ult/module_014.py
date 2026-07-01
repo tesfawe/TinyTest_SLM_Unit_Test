@@ -10,5 +10,4 @@ def initiate_board():
         elif q+r == 3:
             board_dict[(q, r)] = "blue"
 
-    # Returns the final list of end_points/goals
     return board_dict

@@ -1,13 +1,17 @@
-def initiate_board():
-
-    board_dict = {}
-    ran = range(-3, 4)
-    for (q, r) in [(q, r) for q in ran for r in ran if -q - r in ran]:
-        if q == -3 and r >= 0:
-            board_dict[(q, r)] = "red"
-        elif q >= 0 and r == -3:
-            board_dict[(q, r)] = "green"
-        elif q+r == 3:
-            board_dict[(q, r)] = "blue"
-
-    return board_dict
+def b_TP_FN_sentence(train):
+    tp = 0
+    fn = 0
+    tmp_t = ""
+    tmp_r = ""
+    for i in range(len(train)):
+        if(train[i][0] != '_'):
+            tmp_t += train[i][0]
+            tmp_r += train[i][1]
+        elif(train[i][0] == '_'):
+            if(tmp_t == tmp_r and tmp_t !="" and tmp_r != ""):
+                tp += 1
+            elif(tmp_t != tmp_r and tmp_t !="" and tmp_r != ""):
+                fn += 1
+            tmp_r = ""
+            tmp_t = ""
+    return tp, fn
